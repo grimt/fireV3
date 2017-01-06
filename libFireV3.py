@@ -1,11 +1,12 @@
-! Library for functionality common accross all modules.
+#!/usr/bin/env python
+# Library for functionality common accross all modules.
 
-! Data files functionality
+# Data files functionality
 
 Def writeDataToFile (filename, data)
-! filename:   string - full path to file 
-! data:       string - data to write
-! exceptions: log and continue
+# filename:   string - full path to file 
+# data:       string - data to write
+# exceptions: log and continue
   try:
         f = open (filename, 'wt')
         f.write (data)
