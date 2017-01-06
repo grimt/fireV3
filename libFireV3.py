@@ -3,7 +3,7 @@
 
 # Data files functionality
 
-Def writeDataToFile (filename, data)
+def writeDataToFile (filename, data)
 # filename:   string - full path to file 
 # data:       string - data to write
 # exceptions: log and continue
