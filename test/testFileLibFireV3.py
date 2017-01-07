@@ -3,4 +3,4 @@
 
 import libFireV3
 
-writeDataToFile ()
+writeDataToFile ('/home/pi/pycode/fireV3/datafiles/testFile.txt', 'BOLLARDS')
