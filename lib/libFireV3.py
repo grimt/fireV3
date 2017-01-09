@@ -14,3 +14,8 @@ def writeDataToFile (filename, data)
 
   except IOError:
     my_logger.exception ("Cant open file fire_status.txt for writing")
+
+# Test code
+if __name__ == "__main__":
+  print "Executing test code:"
+  writeDataToFile ('/home/pi/pycode/fireV3/datafiles/testFile.txt', 'BOLLARDS')
