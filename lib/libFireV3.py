@@ -32,4 +32,14 @@ if __name__ == "__main__":
     writeDataToFile ('datafiles/testFile.txt', 'BOLLARDS')
     print readDataFromFile ('datafiles/testFile.txt')
 
-    # Next - try writing and reading numbers as strings then converting back to numbers
+    # Writing and reading numbers as strings then converting back to numbers
+    temp = 10
+    temp = temp + 15
+    writeDataToFile ('datafiles/testFile.txt', str(temp))
+    print int (readDataFromFile ('datafiles/testFile.txt'))
+
+    # Now floating point
+
+    floatTemp = 24/7.0
+    writeDataToFile ('datafiles/testFile.txt', str(floatTemp))
+    print float (readDataFromFile ('datafiles/testFile.txt'))
