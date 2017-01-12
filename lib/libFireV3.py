@@ -15,7 +15,21 @@ def writeDataToFile (filename, data):
     except IOError:
         print ("Cant open file " + filename + " for writing")
 
+def readDataFromFile(filename):
+    data = ''
+    try:
+        f = open (filename,'rt')
+        data = f.read ()
+        f.close ()
+    except IOError:
+        print("Cant open file desired_temperature.txt for reading")
+
+    return data
+
 # Test code
 if __name__ == "__main__":
     print "Executing test code:"
     writeDataToFile ('datafiles/testFile.txt', 'BOLLARDS')
+    print readDataFromFile ('datafiles/testFile.txt')
+
+    # Next - try writing and reading numbers as strings then converting back to numbers
