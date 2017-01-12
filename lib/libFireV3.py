@@ -3,19 +3,19 @@
 
 # Data files functionality
 
-def writeDataToFile (filename, data)
-# filename:   string - full path to file 
+def writeDataToFile (filename, data):
+# filename:   string - full path to file
 # data:       string - data to write
 # exceptions: log and continue
-  try:
+    try:
         f = open (filename, 'wt')
         f.write (data)
         f.close ()
 
-  except IOError:
-    my_logger.exception ("Cant open file fire_status.txt for writing")
+    except IOError:
+        print ("Cant open file " + filename + " for writing")
 
 # Test code
 if __name__ == "__main__":
-  print "Executing test code:"
-  writeDataToFile ('/home/pi/pycode/fireV3/datafiles/testFile.txt', 'BOLLARDS')
+    print "Executing test code:"
+    writeDataToFile ('datafiles/testFile.txt', 'BOLLARDS')
