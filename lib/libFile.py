@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Library for functionality common accross all modules.
+# Library for File functionality common accross all modules.
 
 # Data files functionality
 
