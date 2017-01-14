@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # Library for File functionality common accross all modules.
 
-# Data files functionality
 
 def writeDataToFile (filename, data):
 # filename:   string - full path to file
@@ -29,17 +28,19 @@ def readDataFromFile(filename):
 # Test code
 if __name__ == "__main__":
     print "Executing test code:"
-    writeDataToFile ('datafiles/testFile.txt', 'BOLLARDS')
-    print readDataFromFile ('datafiles/testFile.txt')
+    writeDataToFile ('../datafiles/testFile.txt', 'BOLLARDS')
+    print readDataFromFile ('../datafiles/testFile.txt')
 
     # Writing and reading numbers as strings then converting back to numbers
     temp = 10
     temp = temp + 15
-    writeDataToFile ('datafiles/testFile.txt', str(temp))
-    print int (readDataFromFile ('datafiles/testFile.txt'))
+    writeDataToFile ('../datafiles/testFile.txt', str(temp))
+    print int (readDataFromFile ('../datafiles/testFile.txt'))
 
     # Now floating point
 
     floatTemp = 24/7.0
-    writeDataToFile ('datafiles/testFile.txt', str(floatTemp))
-    print float (readDataFromFile ('datafiles/testFile.txt'))
+    writeDataToFile ('../datafiles/testFile.txt', str(floatTemp))
+    print float (readDataFromFile ('../datafiles/testFile.txt'))
+
+    # Next add file specific logging for errors.
