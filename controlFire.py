@@ -2,14 +2,38 @@
 
 # The main script to control the fire
 
+import time
+from lib.libFile import readDataFromFile
 class cFire:
     def __init__(self):
         self.desiredTemperature = 0
         self.measuredTemperature = 0
-        self.control = "manual" # manual or automatic
-        self.timeOverride = False
+        self.manualControl = "off" # manual or automatic
+        self.timeOverride = "off"
+
+    def printDebug(self):
+        print "Desired temperature : " + str(self.desiredTemperature)
+        print "Measured temperature: " + str(self.measuredTemperature)
+        print "Manual Control      : " + self.manualControl
+        print "Time Override       : " + self.timeOverride
 
 
 fire = cFire()
+# Next: add the code to accept a user signal and print out the debug.
+fire.printDebug()
+try:
+    while True:
 
-# Next - while loop reading data from files.
+        fire.desiredTemperature = readDataFromFile('datafiles/desiredTemperature.txt')
+        fire.measuredTemperature = readDataFromFile('datafiles/measuredTemperature.txt')
+        fire.manualControl = readDataFromFile('datafiles/manualControl.txt')
+        fire.timeOverride = readDataFromFile('datafiles/timeOverride.txt')
+
+        # Next: Run the control algorithm
+
+        time.sleep(1)
+# TODO - make this exception more specific
+except KeyboardInterrupt:
+    # switch_fire(OFF)
+    # my_logger.debug ('Switch fire OFF Program Terminates')
+    pass
