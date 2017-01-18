@@ -3,7 +3,10 @@
 # The main script to control the fire
 
 import time
+import signal
+import os
 from lib.libFile import readDataFromFile
+
 class cFire:
     def __init__(self):
         self.desiredTemperature = 0
@@ -21,6 +24,11 @@ class cFire:
 fire = cFire()
 # Next: add the code to accept a user signal and print out the debug.
 fire.printDebug()
+print 'My PID is:', os.getpid()
+
+# For debugging purposes, send kill -USR1 <pid> to see classes internals
+signal.signal(signal.SIGUSR1, fire.preintDebug)
+
 try:
     while True:
 
