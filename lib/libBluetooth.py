@@ -17,14 +17,14 @@ if __name__ == "__main__":
     		print("  %s - %s" % (addr, name))
 		if name == 'HTC Incredible S':
                 	for services in bluetooth.find_service(address = addr):
-				print " Name: %s" % (services["name"]) 
-				print " Description: %s" % (services["description"])
-				print " Protocol: %s" % (services["protocol"])
-				print " Provider: %s" % (services["provider"])
-				print " Port: %s" % (services["port"])
-				print " Service id: %s" % (services["service-id"])
-				print ""
-				print ""
+						print " Name: %s" % (services["name"])
+						print " Description: %s" % (services["description"])
+						print " Protocol: %s" % (services["protocol"])
+						print " Provider: %s" % (services["provider"])
+						print " Port: %s" % (services["port"])
+						print " Service id: %s" % (services["service-id"])
+						print ""
+						print ""
 
 
 	# service = DiscoveryService()
@@ -32,4 +32,3 @@ if __name__ == "__main__":
 
 	# for address, name in devices.items():
     	# 	print("name: {}, address: {}".format(name, address))
-
