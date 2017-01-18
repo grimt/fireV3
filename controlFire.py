@@ -22,9 +22,8 @@ class cFire:
 
 
 fire = cFire()
-# Next: add the code to accept a user signal and print out the debug.
 fire.printDebug()
-print 'My PID is:', os.getpid()
+print 'My PID is:', os.getpid() # Remove after initial debug or move to a log
 
 # For debugging purposes, send kill -USR1 <pid> to see classes internals
 signal.signal(signal.SIGUSR1, fire.preintDebug)
