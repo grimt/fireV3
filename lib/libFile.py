@@ -4,19 +4,7 @@
 import logging
 import logging.handlers
 
-def init_logging():
-    LOG_FILENAME = '/var/log/firev3/libFile.log'
-    # Set up a specific logger with our desired output level
-    my_logger = logging.getLogger('MyLogger')
-    my_logger.setLevel(logging.DEBUG)
-    formatter = logging.Formatter('%(asctime)s  %(message)s')
-
-    # Add the log message handler to the logger
-    handler = logging.handlers.RotatingFileHandler( LOG_FILENAME, maxBytes=90000, backupCount=5)
-    handler.setFormatter(formatter)
-    my_logger.addHandler(handler)
-    my_logger.debug ('Start logging')
-    return my_logger
+from libLog import initLogging
 
 def writeDataToFile (filename, data):
 # filename:   string - full path to file
@@ -41,7 +29,7 @@ def readDataFromFile(filename):
 
     return data
 
-libFileLogger = init_logging()
+libFileLogger = initLogging('/var/log/firev3/libFile.log')
 
 # Test code
 if __name__ == "__main__":
