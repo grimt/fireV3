@@ -22,11 +22,14 @@ class cFire:
 
 
 fire = cFire()
-fire.printDebug()
 print 'My PID is:', os.getpid() # Remove after initial debug or move to a log
 
+
+def receive_signal(signum, stack):
+    print 'Received:', signum
+    fire.printDebug()
 # For debugging purposes, send kill -USR1 <pid> to see classes internals
-signal.signal(signal.SIGUSR1, fire.preintDebug)
+signal.signal(signal.SIGUSR1, receive_signal)
 
 try:
     while True:
