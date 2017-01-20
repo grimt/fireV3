@@ -2,6 +2,11 @@
 
 # Read from remote control via flirc
 
+# Requires the following:
+# sudo apt-get install python-dev python-pip gcc
+# sudo pip install evdev
+
+
 # modules to read from the flirc
 from evdev import InputDevice, categorize, ecodes
 
