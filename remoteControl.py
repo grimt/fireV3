@@ -22,4 +22,4 @@ for event in dev.read_loop():
         # my_logger.debug (categorize(event))
         print ( 'type: ' + str (event.type) + ' code: ' + str (event.code) + ' value ' + str (event.value))
         if event.value == 0:  # key up
-                print ("code: " + event.code)
+                print ("code: " + str(event.code))
