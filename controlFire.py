@@ -5,8 +5,11 @@
 import time
 import signal
 import os
+from threading import Thread, Event
+
 from lib.libFile import readDataFromFile
 from lib.libLog import initLogging
+from remoteControl import startRemoteScanning
 
 class cFire:
     def __init__(self):
@@ -31,6 +34,10 @@ def receiveSignal(signum, stack):
 signal.signal(signal.SIGUSR1, receiveSignal)
 
 controlFireLogger = initLogging('/var/log/fireV3/controlFire.log')
+
+remoteControlThread = Thread(target=startRemoteScanning, args=())
+remoteControlThread.daemon = True
+remoteControlThread.start()
 
 try:
     while True:
