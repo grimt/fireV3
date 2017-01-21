@@ -19,10 +19,10 @@ REMOTE_KEY_YELLOW = 4
 REMOTE_KEY_BLUE = 5
 
 def updateOn ():
-    writeDataToFile (('datafiles/controlStatus.txt', 'ON')
+    writeDataToFile ('datafiles/controlStatus.txt', 'ON')
 
 def updateOff ():
-    writeDataToFile (('datafiles/controlStatus.txt', 'OFF')
+    writeDataToFile ('datafiles/controlStatus.txt', 'OFF')
 
 def updateAuto():
     writeDataToFile ('datafiles/controlStatus.txt', 'AUTO')
