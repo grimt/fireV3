@@ -28,6 +28,8 @@ def updateOff ():
 
 def updateAuto():
     writeDataToFile ('datafiles/controlStatus.txt', 'AUTO')
+    # Default desired temperature to 19 when moving to AUTO
+    writeDataToFile('datafiles/desiredTemperature.txt', str(19))
 
 def toggleDisplayMode():
     # display measured -> display desired -> display off
