@@ -17,6 +17,8 @@ REMOTE_KEY_RED = 2
 REMOTE_KEY_GREEN = 3
 REMOTE_KEY_YELLOW = 4
 REMOTE_KEY_BLUE = 5
+REMOTE_KEY_UP = 103
+REMOTE_KEY_DOWN = 108
 
 def updateOn ():
     writeDataToFile ('datafiles/controlStatus.txt', 'ON')
@@ -39,7 +41,22 @@ def toggleDisplayMode():
     else:
         pass #error
 
+def desiredTemperatureUp():
+    try:
+        currentTemp = int (readDataFromFile('datafiles/desiredTemperature.txt'))
+        currentTemp += 1
+        writeDataToFile('datafiles/desiredTemperature.txt', str(currentTemp))
+    except:
+        pass
 
+def desiredTemperatureDown():
+    try:
+        currentTemp = int (readDataFromFile('datafiles/desiredTemperature.txt'))
+        if currentTemp > 0
+            currentTemp -= 1
+            writeDataToFile('datafiles/desiredTemperature.txt', str(currentTemp))
+    except:
+        pass
 
 
 dev = InputDevice ('/dev/input/event0')
@@ -62,6 +79,10 @@ def startRemoteScanning():
                     updateAuto()
                 elif event.code == REMOTE_KEY_BLUE:
                     toggleDisplayMode()
+                elif event.code == REMOTE_KEY_UP:
+                    desiredTemperatureUp()
+                elif event.code == REMOTE_KEY_DOWN:
+                    desiredTemperatureDown()
                 elif event.code == REMOTE_KEY_NONE:
                     pass
                 else:
