@@ -9,6 +9,38 @@
 
 # modules to read from the flirc
 from evdev import InputDevice, categorize, ecodes
+from libFile import readDataFromFile, writeDataToFile
+
+# Remote control Key definitions
+REMOTE_KEY_NONE = 0
+REMOTE_KEY_RED = 2
+REMOTE_KEY_GREEN = 3
+REMOTE_KEY_YELLOW = 4
+REMOTE_KEY_BLUE = 5
+
+def updateOn ():
+    writeDataToFile (('datafiles/controlStatus.txt', 'ON')
+
+def updateOff ():
+    writeDataToFile (('datafiles/controlStatus.txt', 'OFF')
+
+def updateAuto():
+    writeDataToFile ('datafiles/controlStatus.txt', 'AUTO')
+
+def toggleDisplayMode():
+    # display measured -> display desired -> display off
+    currentStatus = readDataFromFile('datafiles/displayStatus.txt')
+    if currentStatus == 'MEASURED':
+        writeDataToFile ('datafiles/displayStatus.txt', 'DESIRED')
+    elif currentStatus == 'DESIRED':
+        writeDataToFile ('datafiles/displayStatus.txt', 'OFF')
+    elif currentStatus == 'OFF'
+        writeDataToFile ('datafiles/displayStatus.txt', 'MEASURED')
+    else
+        pass #error
+
+
+
 
 dev = InputDevice ('/dev/input/event0')
 def startRemoteScanning():
@@ -22,9 +54,21 @@ def startRemoteScanning():
             # my_logger.debug (categorize(event))
             print ( 'type: ' + str (event.type) + ' code: ' + str (event.code) + ' value ' + str (event.value))
             if event.value == 0:  # key up
-                    print ("code: " + str(event.code))
+                if event.code == REMOTE_KEY_RED:
+                    updateOn()
+                elif event.code == REMOTE_KEY_GREEN:
+                    updateOff()
+                elif event.code == REMOTE_KEY_YELLOW:
+                    updateAuto()
+                elif event.code == REMOTE_KEY_BLUE:
+                    toggleDisplayMode()
+                elif event.code == REMOTE_KEY_NONE:
+                    pass
+                else
+                    # TODO Up/DOWN for desired temperature
+                    print "Code: " + str (event.code)
 
-# Next - put me in my own thread and call me from controlFire
+# Next - write data to files based on remote control key presses.
 
 if __name__ == "__main__":
     print "Executing remoteControl.py test code"
