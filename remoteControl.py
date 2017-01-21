@@ -9,7 +9,7 @@
 
 # modules to read from the flirc
 from evdev import InputDevice, categorize, ecodes
-from libFile import readDataFromFile, writeDataToFile
+from lib.libFile import readDataFromFile, writeDataToFile
 
 # Remote control Key definitions
 REMOTE_KEY_NONE = 0
