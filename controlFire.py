@@ -46,7 +46,7 @@ class cFire:
         print "Control Status      : " + self.controlStatus
         print "Time Override       : " + self.timeOverride
 
-    def runContolAlgorith(self):
+    def runControlAlgorithm(self):
         if self.controlStatus == 'OFF':
             self.switchFireOff()
         elif self.controlStatus == 'ON':
