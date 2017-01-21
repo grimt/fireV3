@@ -52,7 +52,7 @@ def desiredTemperatureUp():
 def desiredTemperatureDown():
     try:
         currentTemp = int (readDataFromFile('datafiles/desiredTemperature.txt'))
-        if currentTemp > 0
+        if currentTemp > 0:
             currentTemp -= 1
             writeDataToFile('datafiles/desiredTemperature.txt', str(currentTemp))
     except:
