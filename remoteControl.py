@@ -36,7 +36,7 @@ def toggleDisplayMode():
         writeDataToFile ('datafiles/displayStatus.txt', 'OFF')
     elif currentStatus == 'OFF':
         writeDataToFile ('datafiles/displayStatus.txt', 'MEASURED')
-    else
+    else:
         pass #error
 
 
@@ -64,7 +64,7 @@ def startRemoteScanning():
                     toggleDisplayMode()
                 elif event.code == REMOTE_KEY_NONE:
                     pass
-                else
+                else:
                     # TODO Up/DOWN for desired temperature
                     print "Code: " + str (event.code)
 
