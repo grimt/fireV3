@@ -7,6 +7,7 @@
 # sudo pip install evdev
 
 
+from lib.libLog import initLogging
 # modules to read from the flirc
 from evdev import InputDevice, categorize, ecodes
 from lib.libFile import readDataFromFile, writeDataToFile
@@ -71,8 +72,10 @@ def startRemoteScanning():
 
         if event.type == ecodes.EV_KEY:
             # my_logger.debug (categorize(event))
-            print ( 'type: ' + str (event.type) + ' code: ' + str (event.code) + ' value ' + str (event.value))
             if event.value == 0:  # key up
+                remoteControlLogger.debug ( 'type: ' + str (event.type) + \
+                ' code: ' + str (event.code) + ' value ' + str (event.value))
+
                 if event.code == REMOTE_KEY_RED:
                     updateOn()
                 elif event.code == REMOTE_KEY_GREEN:
@@ -91,7 +94,8 @@ def startRemoteScanning():
                     # TODO Up/DOWN for desired temperature
                     print "Code: " + str (event.code)
 
-# Next - write data to files based on remote control key presses.
+
+remoteControlLogger = initLogging('/var/log/fireV3/remoteControl.log')
 
 if __name__ == "__main__":
     print "Executing remoteControl.py test code"
