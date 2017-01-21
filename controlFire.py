@@ -26,13 +26,13 @@ class cFire:
 
         if self.fireState == FIRE_ON:
             print 'Switch fire off'
-            self.fireState == FIRE_OFF
+            self.fireState = FIRE_OFF
             # Switch off fire at relay
 
     def switchFireOn(self):
         if self.fireState == FIRE_OFF:
             print 'switch fire on'
-            self.fireState == FIRE_ON
+            self.fireState = FIRE_ON
             # Switch on fire at relay
 
     def runAutoControlAlgorithm (self):
