@@ -13,8 +13,8 @@ from lib.libFile import readDataFromFile, writeDataToFile
 
 # Remote control Key definitions
 REMOTE_KEY_NONE = 0
-REMOTE_KEY_RED = 2
-REMOTE_KEY_GREEN = 3
+REMOTE_KEY_RED = 3
+REMOTE_KEY_GREEN = 2
 REMOTE_KEY_YELLOW = 4
 REMOTE_KEY_BLUE = 5
 REMOTE_KEY_UP = 103
