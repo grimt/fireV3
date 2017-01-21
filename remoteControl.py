@@ -34,7 +34,7 @@ def toggleDisplayMode():
         writeDataToFile ('datafiles/displayStatus.txt', 'DESIRED')
     elif currentStatus == 'DESIRED':
         writeDataToFile ('datafiles/displayStatus.txt', 'OFF')
-    elif currentStatus == 'OFF'
+    elif currentStatus == 'OFF':
         writeDataToFile ('datafiles/displayStatus.txt', 'MEASURED')
     else
         pass #error
