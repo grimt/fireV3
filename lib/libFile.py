@@ -29,7 +29,7 @@ def readDataFromFile(filename):
 
     return data
 
-libFileLogger = initLogging('/var/log/firev3/libFile.log')
+libFileLogger = initLogging('/var/log/fireV3/libFile.log')
 
 # Test code
 if __name__ == "__main__":
