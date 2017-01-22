@@ -48,7 +48,7 @@ class cFire:
                 try:
                     if float (self.measuredTemperature) >= (float(self.desiredTemperature)  + 0.5):
                         self.switchFireOff
-                        my_logger.debug ('Switch fire OFF Desired: ' + str (self.desiredTemperature)\
+                        controlFireLogger.debug ('Switch fire OFF Desired: ' + str (self.desiredTemperature)\
                             + ' Measured: ' + str (self.measuredTemperature))
                 except:
                     controlFireLogger.exception ('ValueError exception' + str (self.measuredTemperature))
