@@ -39,7 +39,7 @@ class cFire:
         print ('Hysteresis: current state: ' + str (self.fireState)\
          + ' desired: ' + str (self.desiredTemperature) + ' Measured: ' + str (self.measuredTemperature))
         try:
-            if self.fireState == OFF:
+            if self.fireState == FIRE_OFF:
                 if float(self.measuredTemperature) <= (self.desiredTemperature - 0.5):
                     self.switchFireOn ()
                     controlFireLogger.debug ('Switch fire ON Desired: ' + str (self.desiredTemperature)\
