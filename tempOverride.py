@@ -36,6 +36,8 @@ def startTemperatureOverride():
             # switch the fire off
             tempOverrideLogger.warning ('Switch fire OFF as outside time range at: ' + str(localtime))
             updateOff ()
+            # Tell the world we are in override mode.
+            writeDataToFile ('datafiles/timeOverride.txt', 'ON')
 
         time.sleep (60 * 30) # check again in 30 minutes
         # time.sleep (30) # use 30 seconds for debug purposes

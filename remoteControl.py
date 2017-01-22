@@ -75,6 +75,8 @@ def startRemoteScanning():
             if event.value == 0:  # key up
                 remoteControlLogger.debug ( 'type: ' + str (event.type) + \
                 ' code: ' + str (event.code) + ' value ' + str (event.value))
+                # Pressing any key switches of the time override
+                writeDataToFile ('datafiles/timeOverride.txt', 'OFF')
 
                 if event.code == REMOTE_KEY_RED:
                     updateOn()
