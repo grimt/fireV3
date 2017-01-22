@@ -40,7 +40,7 @@ class cFire:
          + ' desired: ' + str (self.desiredTemperature) + ' Measured: ' + str (self.measuredTemperature))
         try:
             if self.fireState == FIRE_OFF:
-                if float(self.measuredTemperature) <= (self.desiredTemperature - 0.5):
+                if float(self.measuredTemperature) <= (float(self.desiredTemperature) - 0.5):
                     self.switchFireOn ()
                     controlFireLogger.debug ('Switch fire ON Desired: ' + str (self.desiredTemperature)\
                      + ' Measured: ' + str (self.measuredTemperature))
