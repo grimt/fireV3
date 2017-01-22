@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+
+# The fire should be switched off unless it is between 4pm and 10pm
+# This task will check the time at half hour intervals and switch the
+# fire off unless the time is within the range specified above.
+# Note the fire can be switched on again by the remote but it will
+# be switched off again in the next half hour
+
+import os
+import sys
+
+import time
+import datetime
+
+from lib.libLog import initLogging
+from lib.libFile import  writeDataToFile
+
+
+def updateOff ():
+    writeDataToFile ('datafiles/controlStatus.txt', 'OFF')
+
+def startTemperatureOverride():
+    def check_time ():
+    	while True:
+    	    localtime = datetime.datetime.time(datetime.datetime.now())
+    	    start = datetime.time(16, 0, 0) # 4pm
+    	    end = datetime.time(22, 0, 0) # 10pm
+
+    	    if not (time_in_range (start, end, localtime)):
+    	           # switch the fire off
+                   tempOverrideLogger.warning ('Switch fire OFF as outside time range at: ' + str(localtime))
+                   updateOff ()
+
+            time.sleep (60 * 15) # check again in 15 minutes
+
+
+
+tempOverrideLogger = initLogging('/var/log/fireV3/tempOverride.log')
+
+if __name__ == "__main__":
+    print "Executing tempOverride.py test code"
+    startTemperatureOverride()
