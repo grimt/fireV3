@@ -36,7 +36,24 @@ class cFire:
             # Switch on fire at relay
 
     def runAutoControlAlgorithm (self):
-        pass
+        controlFireLogger.debug ('Hysteresis: current state: ' + str (self.fireState)\
+         + ' desired: ' + str (self.desiredTemperature) + ' Measured: ' + str (self.measuredTemperature))
+        try:
+            if self.fireState == OFF:
+                if float(self.measuredTemperature) <= (self.desiredTemperature - 0.5):
+                    self.switchFireOn ()
+                    controlFireLogger.debug ('Switch fire ON Desired: ' + str (self.desiredTemperature)\
+                     + ' Measured: ' + str (self.measuredTemperature))
+            else:
+                try:
+                    if float (self.measuredTemperature) >= (self.desiredTemperature  + 0.5):
+                        self.switchFireOff
+                        my_logger.debug ('Switch fire OFF Desired: ' + str (self.desiredTemperature)\
+                            + ' Measured: ' + str (self.measuredTemperature))
+                except:
+                    controlFireLogger.exception ('ValueError exception' + str (actual))
+        except ValueError:
+            controlFireLogger.exception ('ValueError exception' + str (actual))
 
     def printDebug(self):
         if self.fireState == FIRE_ON:
