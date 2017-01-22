@@ -18,7 +18,7 @@ from lib.libFile import  writeDataToFile
 
 def updateOff ():
     writeDataToFile ('datafiles/controlStatus.txt', 'OFF')
-    
+
 def time_in_range(start, end, x):
     """Return true if x is in the range [start, end]"""
     if start <= end:
@@ -37,8 +37,8 @@ def startTemperatureOverride():
             tempOverrideLogger.warning ('Switch fire OFF as outside time range at: ' + str(localtime))
             updateOff ()
 
-        # time.sleep (60 * 15) # check again in 15 minutes
-        time.sleep (30) # use 30 seconds for debug purposes
+        time.sleep (60 * 30) # check again in 30 minutes
+        # time.sleep (30) # use 30 seconds for debug purposes
 
 
 
