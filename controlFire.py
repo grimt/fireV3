@@ -10,6 +10,7 @@ from threading import Thread, Event
 from lib.libFile import readDataFromFile
 from lib.libLog import initLogging
 from remoteControl import startRemoteScanning
+from tempOverride import startTemperatureOverride
 
 FIRE_ON = 1
 FIRE_OFF = 0
@@ -88,6 +89,10 @@ controlFireLogger = initLogging('/var/log/fireV3/controlFire.log')
 remoteControlThread = Thread(target=startRemoteScanning, args=())
 remoteControlThread.daemon = True
 remoteControlThread.start()
+
+temperatureOverrideThread = Thread(target=startTemperatureOverride, args=())
+temperatureOverrideThread.daemon = True
+temperatureOverrideThread.start()
 
 try:
     while True:
