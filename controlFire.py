@@ -51,9 +51,9 @@ class cFire:
                         my_logger.debug ('Switch fire OFF Desired: ' + str (self.desiredTemperature)\
                             + ' Measured: ' + str (self.measuredTemperature))
                 except:
-                    controlFireLogger.exception ('ValueError exception' + str (self.measured_temperature))
+                    controlFireLogger.exception ('ValueError exception' + str (self.measuredTemperature))
         except ValueError:
-            controlFireLogger.exception ('ValueError exception' + str (self.measured_temperature))
+            controlFireLogger.exception ('ValueError exception' + str (self.measuredTemperature))
 
     def printDebug(self):
         if self.fireState == FIRE_ON:
