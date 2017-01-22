@@ -39,8 +39,8 @@ def startTemperatureOverride():
             # Tell the world we are in override mode.
             writeDataToFile ('datafiles/timeOverride.txt', 'ON')
 
-        time.sleep (60 * 30) # check again in 30 minutes
-        # time.sleep (30) # use 30 seconds for debug purposes
+        #time.sleep (60 * 30) # check again in 30 minutes
+        time.sleep (30) # use 30 seconds for debug purposes
 
 
 
