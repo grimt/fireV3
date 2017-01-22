@@ -23,7 +23,6 @@ class cFire:
         self.fireState = FIRE_OFF  # Integer FIRE_OFF/FIRE_ON
 
     def switchFireOff(self):
-
         if self.fireState == FIRE_ON:
             print 'Switch fire off'
             self.fireState = FIRE_OFF
@@ -47,7 +46,7 @@ class cFire:
             else:
                 try:
                     if float (self.measuredTemperature) >= (float(self.desiredTemperature)  + 0.5):
-                        self.switchFireOff
+                        self.switchFireOff ()
                         controlFireLogger.debug ('Switch fire OFF Desired: ' + str (self.desiredTemperature)\
                             + ' Measured: ' + str (self.measuredTemperature))
                 except:
