@@ -20,18 +20,18 @@ def updateOff ():
     writeDataToFile ('datafiles/controlStatus.txt', 'OFF')
 
 def startTemperatureOverride():
-    def check_time ():
-    	while True:
-    	    localtime = datetime.datetime.time(datetime.datetime.now())
-    	    start = datetime.time(16, 0, 0) # 4pm
-    	    end = datetime.time(22, 0, 0) # 10pm
+    while True:
+    	localtime = datetime.datetime.time(datetime.datetime.now())
+    	start = datetime.time(16, 0, 0) # 4pm
+    	end = datetime.time(22, 0, 0) # 10pm
 
-    	    if not (time_in_range (start, end, localtime)):
-    	           # switch the fire off
-                   tempOverrideLogger.warning ('Switch fire OFF as outside time range at: ' + str(localtime))
-                   updateOff ()
+    	if not (time_in_range (start, end, localtime)):
+            # switch the fire off
+            tempOverrideLogger.warning ('Switch fire OFF as outside time range at: ' + str(localtime))
+            updateOff ()
 
-            time.sleep (60 * 15) # check again in 15 minutes
+        # time.sleep (60 * 15) # check again in 15 minutes
+        time.sleep (30) # use 30 seconds for debug purposes
 
 
 
