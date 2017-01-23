@@ -7,7 +7,7 @@
 # Requires the following:
 
 
-
+import time
 from lib.libLog import initLogging
 
 # modules to read/write to Pi Hardware
