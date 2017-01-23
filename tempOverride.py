@@ -41,6 +41,9 @@ def startTemperatureOverride():
 
         time.sleep (60 * 30) # check again in 30 minutes
         #time.sleep (30) # use 30 seconds for debug purposes
+        
+        # Next, implement a counter with 1 second sleep so we can reset the counter when a remote
+        # control button is pressed.
 
 
 
