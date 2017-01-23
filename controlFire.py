@@ -107,7 +107,7 @@ try:
         time.sleep(1)
 # TODO - make this exception more specific
 except KeyboardInterrupt:
-    # switch_fire(OFF)
+    fire.switchFireOff()
     controlFireLogger.debug ('Switch fire OFF Program Terminates')
 
-# Next implement time Override
+# Next implement hardware I/O for relay
