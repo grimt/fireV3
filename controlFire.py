@@ -12,6 +12,7 @@ from lib.libLog import initLogging
 from remoteControl import startRemoteScanning
 from tempOverride import startTemperatureOverride
 from tempSensor import startTempSensor
+from showStatus import startShowStatus
 
 FIRE_ON = 1
 FIRE_OFF = 0
