@@ -61,7 +61,7 @@ def startTempSensor ():
 
         #print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
         tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
-        writeDataToFile ('datafiles/measuredTemperature.txt', "%.1f" % objTemp)
+        writeDataToFile ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
         # Switch off the temp sensor
         tool.sendline('char-write-cmd 0x0027 00')
         time.sleep(3)

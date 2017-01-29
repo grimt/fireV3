@@ -7,14 +7,15 @@ import time
 from lib.libFile import readDataFromFile
 from piIO import printMessage
 
+# Next: work out why reading from string test is failing
 def startShowStatus ():
     while True:
         dataToShow = readDataFromFile('datafiles/showStatus.txt')
-        print dataToShow
-        if str(dataToShow) == 'MEASURED':
+#        print dataToShow
+        if True: # dataToShow == "MEASURED":
             data = readDataFromFile('datafiles/measuredTemperature.txt')
-            print"Temp: " +  data
-            printMessage (data)
+            print "Temp: " +  data
+            printMessage (str(data))
             pass
         elif dataToShow == "DESIRED":
             pass
@@ -26,7 +27,14 @@ def startShowStatus ():
             pass
         else:
             pass #error
-    time.sleep(1)
+        time.sleep(1)
+
+def OLD_startShowStatus ():
+    while True:
+        data = readDataFromFile('datafiles/measuredTemperature.txt') 
+        print str(data)
+        printMessage (data)
+        time.sleep(1)
 
 if __name__ == "__main__":
     startShowStatus ()

@@ -7,7 +7,7 @@ import signal
 import os
 from threading import Thread, Event
 
-from lib.libFile import readDataFromFile
+from lib.libFile import readDataFromFile, writeDataToFile
 from lib.libLog import initLogging
 from remoteControl import startRemoteScanning
 from tempOverride import startTemperatureOverride
@@ -104,6 +104,8 @@ temperatureSensorThread.start()
 showMessageThread = Thread(target=startShowStatus, args=())
 showMessageThread.daemon = True
 showMessageThread.start()
+
+writeDataToFile('datafiles/measuredTemperature.txt', "MEASURED")
 
 try:
     while True:
