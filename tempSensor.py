@@ -22,6 +22,9 @@ def calcTemp(rTemp):
     return rTemp / 4.0 * 0.03125
 
 def startTempSensor ():
+
+    tempSensorLogger = initLogging('/var/log/fireV3/tempSensor.log')
+    
     #bluetooth_adr = sys.argv[1] # 'A0:E6:F8:AF:3C:06'
     bluetooth_adr = "A0:E6:F8:AF:3C:06"
     print "connecting to " + bluetooth_adr
@@ -62,5 +65,3 @@ def startTempSensor ():
         # Switch off the temp sensor
         tool.sendline('char-write-cmd 0x0027 00')
         time.sleep(3)
-
-    tempSensorLogger = initLogging('/var/log/fireV3/tempSensor.log')
