@@ -9,6 +9,7 @@
 
 import time
 from lib.libLog import initLogging
+from Adafruit_LED_Backpack import AlphaNum4
 
 # modules to read/write to Pi Hardware
 import RPi.GPIO as GPIO
@@ -32,17 +33,48 @@ def switch_fire_relay (off_or_on):
     else:
         GPIO.output (OUT_RELAY_PIN, False)
     	piHwIoLogger.info ("Relay is OFF")
-     
 
+def printMessage (message):
+    pos = 0
+    # Clear the display buffer.
+    display.clear()
+    # Print a 4 character string to the display buffer.
+    display.print_str(message[pos:pos+4])
+    # Write the display buffer to the hardware.  This must be called to
+    # update the actual display LEDs.
+    display.write_display()
+ 
+# General IO
 init_GPIO()
 
+#Alphanumeric Display
+
+# Create display instance on default I2C address (0x70) and bus number.
+display = AlphaNum4.AlphaNum4()
+ 
+  
+# Initialize the display. Must be called once before using the display.
+display.begin()
+
+# Logging
 piHwIoLogger = initLogging('/var/log/fireV3/piIO.log')
 
 if __name__ == "__main__":
     print "Executing remoteControl.py test code"
     print "Switch relay on: "
     switch_fire_relay(ON)
-    print "Eait for 5 seconds"
-    time.sleep(5)
+    print "Wait for 1 seconds"
+    time.sleep(1)
     print "Switch relay off: "
     switch_fire_relay(OFF)  
+
+    print "Now test the Alphanumeric"
+    printMessage ('KISS')
+    time.sleep(5)
+    printMessage ('ME')
+    time.sleep(5)
+    printMessage ('NOW')
+    time.sleep(5)
+    printMessage ('    ')
+    print "Done"
+    
