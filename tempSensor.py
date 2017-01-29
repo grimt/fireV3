@@ -22,9 +22,11 @@ def calcTemp(rTemp):
 
 tempSensorLogger = initLogging('/var/log/fireV3/tempSensor.log')
 
-bluetooth_adr = sys.argv[1] # 'A0:E6:F8:AF:3C:06'
-print "connecting to " + sys.argv[1]
+#bluetooth_adr = sys.argv[1] # 'A0:E6:F8:AF:3C:06'
+bluetooth_adr = "A0:E6:F8:AF:3C:06"
+print "connecting to " + bluetooth_adr 
 
+startUSB = pexpect.spawn ('sudo hciconfig hci0 up') 
 tool = pexpect.spawn('gatttool -b ' + bluetooth_adr + ' --interactive')
 tool.expect('\[LE\]>')
 print "Preparing to connect. You might need to press the side button..."
@@ -54,7 +56,7 @@ while True:
     objTemp = calcTemp (rObjTemp)
     ambTemp = calcTemp (rAmbTemp)
 
-    # print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
+    #print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
     tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
     # Switch off the temp sensor
     tool.sendline('char-write-cmd 0x0027 00')
