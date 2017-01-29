@@ -95,9 +95,9 @@ temperatureOverrideThread = Thread(target=startTemperatureOverride, args=())
 temperatureOverrideThread.daemon = True
 temperatureOverrideThread.start()
 
- temperatureSensorThread = Thread(target=startTempSensor, args=())
- temperatureSensorThread.daemon = True
- temperatureSensor.start()
+temperatureSensorThread = Thread(target=startTempSensor, args=())
+temperatureSensorThread.daemon = True
+temperatureSensor.start()
 
 try:
     while True:
