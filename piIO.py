@@ -9,6 +9,8 @@
 
 import time
 from lib.libLog import initLogging
+# See https://learn.adafruit.com/led-backpack-displays-on-raspberry-pi-and-beaglebone-black/usage
+# for setting up the alphanumeric display
 from Adafruit_LED_Backpack import AlphaNum4
 
 # modules to read/write to Pi Hardware
@@ -35,6 +37,8 @@ def switch_fire_relay (off_or_on):
     	piHwIoLogger.info ("Relay is OFF")
 
 def printMessage (message):
+    # Pass in a 4 character string to be printed
+    # on the alphanumeric display.
     pos = 0
     # Clear the display buffer.
     display.clear()
@@ -43,7 +47,7 @@ def printMessage (message):
     # Write the display buffer to the hardware.  This must be called to
     # update the actual display LEDs.
     display.write_display()
- 
+
 # General IO
 init_GPIO()
 
@@ -51,8 +55,8 @@ init_GPIO()
 
 # Create display instance on default I2C address (0x70) and bus number.
 display = AlphaNum4.AlphaNum4()
- 
-  
+
+
 # Initialize the display. Must be called once before using the display.
 display.begin()
 
@@ -66,7 +70,7 @@ if __name__ == "__main__":
     print "Wait for 1 seconds"
     time.sleep(1)
     print "Switch relay off: "
-    switch_fire_relay(OFF)  
+    switch_fire_relay(OFF)
 
     print "Now test the Alphanumeric"
     printMessage ('KISS')
@@ -77,4 +81,3 @@ if __name__ == "__main__":
     time.sleep(5)
     printMessage ('    ')
     print "Done"
-    

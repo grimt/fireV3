@@ -11,6 +11,7 @@ from lib.libFile import readDataFromFile
 from lib.libLog import initLogging
 from remoteControl import startRemoteScanning
 from tempOverride import startTemperatureOverride
+from tempSensor import startTempSensor
 
 FIRE_ON = 1
 FIRE_OFF = 0
@@ -93,6 +94,10 @@ remoteControlThread.start()
 temperatureOverrideThread = Thread(target=startTemperatureOverride, args=())
 temperatureOverrideThread.daemon = True
 temperatureOverrideThread.start()
+
+ temperatureSensorThread = Thread(target=startTempSensor, args=())
+ temperatureSensorThread.daemon = True
+ temperatureSensor.start()
 
 try:
     while True:
