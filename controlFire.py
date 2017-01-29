@@ -99,6 +99,11 @@ temperatureSensorThread = Thread(target=startTempSensor, args=())
 temperatureSensorThread.daemon = True
 temperatureSensorThread.start()
 
+# Control what gets sent to the alphanumeric display
+showMessageThread = Thread(target=startShowStatus, args=())
+showMessageThread.daemon = True
+showMessageThread.start()
+
 try:
     while True:
 
