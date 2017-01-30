@@ -120,7 +120,7 @@ try:
         fire.runControlAlgorithm()
 
         # TODO Covert other 1 seconds sleeps to a #define in a library so we can test modifying the value
-        time.sleep(UI_SLEEP_TIME)
+        time.sleep(CONTROL_SLEEP_TIME)
 # TODO - make this exception more specific
 except KeyboardInterrupt:
     fire.switchFireOff()
