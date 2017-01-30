@@ -9,7 +9,7 @@ import time
 from lib.libLog import initLogging
 from lib.libFile import writeDataToFile
 
-
+#TODO - can we use int from hex
 def floatfromhex(h):
     t = float.fromhex(h)
     if t > float.fromhex('7FFF'):
