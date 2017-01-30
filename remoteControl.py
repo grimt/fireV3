@@ -34,13 +34,17 @@ def updateAuto():
 
 def toggleDisplayMode():
     # display measured -> display desired -> display off
-    currentStatus = readDataFromFile('datafiles/displayStatus.txt')
-    if currentStatus == 'MEASURED':
-        writeDataToFile ('datafiles/displayStatus.txt', 'DESIRED')
-    elif currentStatus == 'DESIRED':
-        writeDataToFile ('datafiles/displayStatus.txt', 'OFF')
-    elif currentStatus == 'OFF':
-        writeDataToFile ('datafiles/displayStatus.txt', 'MEASURED')
+    currentStatus = readDataFromFile('datafiles/showStatus.txt')
+    if currentStatus == "MEASURED":
+        writeDataToFile ('datafiles/showStatus.txt', "DESIRED")
+    elif currentStatus == "DESIRED":
+        writeDataToFile ('datafiles/showStatus.txt', "BLANK")
+    elif currentStatus == "BLANK":
+        writeDataToFile ('datafiles/showStatus.txt', "CONTROL")
+    elif currentStatus == "CONTROL":
+        writeDataToFile ('datafiles/showStatus.txt', "STATUS")
+    elif currentStatus == "STATUS":
+        writeDataToFile ('datafiles/showStatus.txt', "MEASURED")
     else:
         pass #error
 
