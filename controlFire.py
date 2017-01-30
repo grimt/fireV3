@@ -9,6 +9,7 @@ from threading import Thread, Event
 
 from lib.libFile import readDataFromFile, writeDataToFile
 from lib.libLog import initLogging
+from lib.libConstants import UI_SLEEP_TIME
 from remoteControl import startRemoteScanning
 from tempOverride import startTemperatureOverride
 from tempSensor import startTempSensor
@@ -118,8 +119,8 @@ try:
 
         fire.runControlAlgorithm()
 
-        # TODO Covert most 1 seconds sleeps to a #define in a library so we can test modifying the value
-        time.sleep(1)
+        # TODO Covert other 1 seconds sleeps to a #define in a library so we can test modifying the value
+        time.sleep(UI_SLEEP_TIME)
 # TODO - make this exception more specific
 except KeyboardInterrupt:
     fire.switchFireOff()
