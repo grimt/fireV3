@@ -105,7 +105,7 @@ showMessageThread = Thread(target=startShowStatus, args=())
 showMessageThread.daemon = True
 showMessageThread.start()
 
-writeDataToFile('datafiles/measuredTemperature.txt', "MEASURED")
+writeDataToFile('datafiles/showStatus.txt', "MEASURED")
 
 try:
     while True:
