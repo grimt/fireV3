@@ -4,7 +4,8 @@
 # to the alphanumeric display based on the contents.
 
 import time
-from lib.libFile import readDataFromFile, writeDataToFile # writeData will go after debugging
+from lib.libFile import readDataFromFile
+from lib.libConstants import UI_SLEEP_TIME
 from piIO import printMessage
 
 def startShowStatus ():
@@ -28,7 +29,7 @@ def startShowStatus ():
             printMessage (data)
         else:
             pass #error
-        time.sleep(1)
+        time.sleep(UI_SLEEP_TIME)
 
 def OLD_startShowStatus ():
     while True:
