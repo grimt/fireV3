@@ -9,7 +9,7 @@ from threading import Thread, Event
 
 from lib.libFile import readDataFromFile, writeDataToFile
 from lib.libLog import initLogging
-from lib.libConstants import UI_SLEEP_TIME
+from lib.libConstants import CONTROL_SLEEP_TIME
 from remoteControl import startRemoteScanning
 from tempOverride import startTemperatureOverride
 from tempSensor import startTempSensor
