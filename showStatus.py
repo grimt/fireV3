@@ -6,7 +6,7 @@
 import time
 from lib.libFile import readDataFromFile
 from lib.libConstants import UI_SLEEP_TIME
-from piIO import printMessage
+from piIO import printMessage, printNumberMessage
 
 def startShowStatus ():
     while True:
@@ -16,9 +16,9 @@ def startShowStatus ():
             data = readDataFromFile('datafiles/measuredTemperature.txt')
             print "Temp: " +  data
             # remove the decimal point as it takes up a whole character
-            data = data.replace(".","")
+            # data = data.replace(".","")
             data = 'm' + data
-            printMessage (data)
+            printNumberMessage (data)
         elif dataToShow == "DESIRED":
             data = readDataFromFile ('datafiles/desiredTemperature.txt')
             data = 'd' + data
