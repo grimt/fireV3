@@ -6,10 +6,13 @@
 import time
 from lib.libFile import readDataFromFile
 from lib.libConstants import UI_SLEEP_TIME
-from piIO import printMessage, printNumberMessage
+from piIO import printMessage, printNumberMessage, setBrightness
 
 def startShowStatus ():
     while True:
+        # First set the brightness
+        brightness = readDataFromFile ('datafiles/alphaNumBrightness.txt')
+        setBrightness (int(brightness))
         dataToShow = readDataFromFile('datafiles/showStatus.txt')
  #       print dataToShow
         if dataToShow == "MEASURED":
