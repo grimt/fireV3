@@ -118,6 +118,7 @@ try:
 
         fire.runControlAlgorithm()
 
+        # TODO Covert most 1 seconds sleeps to a #define in a library so we can test modifying the value
         time.sleep(1)
 # TODO - make this exception more specific
 except KeyboardInterrupt:
