@@ -10,9 +10,11 @@ from piIO import printMessage
 # Next: work out why reading from string test is failing
 def startShowStatus ():
     while True:
+        writeDataToFile ('datafiles/showStatus.txt')
         dataToShow = readDataFromFile('datafiles/showStatus.txt')
 #        print dataToShow
-        if True: # dataToShow == "MEASURED":
+        if dataToShow == "MEASURED":
+            print "True"
             data = readDataFromFile('datafiles/measuredTemperature.txt')
             print "Temp: " +  data
             printMessage (str(data))
@@ -31,7 +33,7 @@ def startShowStatus ():
 
 def OLD_startShowStatus ():
     while True:
-        data = readDataFromFile('datafiles/measuredTemperature.txt') 
+        data = readDataFromFile('datafiles/measuredTemperature.txt')
         print str(data)
         printMessage (data)
         time.sleep(1)
