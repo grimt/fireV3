@@ -106,6 +106,7 @@ showMessageThread.daemon = True
 showMessageThread.start()
 
 writeDataToFile('datafiles/showStatus.txt', "MEASURED")
+writeDataToFile('datafiles/statusStatus.txt', "GOOD") #BTEr Batt etc. show any errors
 
 try:
     while True:

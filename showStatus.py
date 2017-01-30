@@ -10,19 +10,22 @@ from piIO import printMessage
 def startShowStatus ():
     while True:
         dataToShow = readDataFromFile('datafiles/showStatus.txt')
-        print dataToShow
+ #       print dataToShow
         if dataToShow == "MEASURED":
             data = readDataFromFile('datafiles/measuredTemperature.txt')
             print "Temp: " +  data
-            printMessage (str(data))
+            printMessage (data)
         elif dataToShow == "DESIRED":
-            pass
+            data = readDataFromFile ('datafiles/desiredTemperature.txt')
+            printMessage (data)
         elif dataToShow == "BLANK":
             printMessage ('    ')
         elif dataToShow == "CONTROL":
-            pass
+                data = readDataFromFile ('datafiles/controlStatus.txt')
+                printMessage (data)
         elif dataToShow == "STATUS":
-            pass
+            data = readDataFromFile ('datafiles/statusStatus.txt')
+            printMessage (data)
         else:
             pass #error
         time.sleep(1)
