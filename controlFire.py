@@ -108,6 +108,7 @@ showMessageThread.start()
 
 writeDataToFile('datafiles/showStatus.txt', "MEASURED")
 writeDataToFile('datafiles/statusStatus.txt', "GOOD") #BTEr Batt etc. show any errors
+writeDataToFile ('datafiles/alphaNumBrightness.txt', "8") # 1 to 15 (leave off 0 as this is the same as blank
 
 try:
     while True:
