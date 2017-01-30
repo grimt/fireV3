@@ -15,9 +15,13 @@ def startShowStatus ():
         if dataToShow == "MEASURED":
             data = readDataFromFile('datafiles/measuredTemperature.txt')
             print "Temp: " +  data
+            # remove the decimal point as it takes up a whole character
+            data = data.replace(".","")
+            data = 'm' + data
             printMessage (data)
         elif dataToShow == "DESIRED":
             data = readDataFromFile ('datafiles/desiredTemperature.txt')
+            data = 'd' + data
             printMessage (data)
         elif dataToShow == "BLANK":
             printMessage ('    ')
