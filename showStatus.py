@@ -4,7 +4,7 @@
 # to the alphanumeric display based on the contents.
 
 import time
-from lib.libFile import readDataFromFile
+from lib.libFile import readDataFromFile, writeDataToFile # writeData will go after debugging
 from piIO import printMessage
 
 # Next: work out why reading from string test is failing
