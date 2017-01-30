@@ -41,6 +41,8 @@ def startTempSensor ():
     #tool.sendline('char-write-cmd 0x0027 01')
     tool.expect('\[LE\]>')
     while True:
+        #TODO move delay between reads to 30 seconds
+        #TODO investigate what happens when bluetooth goes down
         # time.sleep(5)
         # Switch on IR Temp sensor
         tool.sendline('char-write-cmd 0x0027 01')
