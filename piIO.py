@@ -11,7 +11,7 @@ import time
 from lib.libLog import initLogging
 # See https://learn.adafruit.com/led-backpack-displays-on-raspberry-pi-and-beaglebone-black/usage
 # for setting up the alphanumeric display
-from Adafruit_LED_Backpack import AlphaNum4
+from Adafruit_LED_Backpack import AlphaNum4, HT16K33
 
 # modules to read/write to Pi Hardware
 import RPi.GPIO as GPIO
@@ -60,7 +60,10 @@ def printMessage (message):
     display.print_number_str(message[pos:pos+4])
     # Write the display buffer to the hardware.  This must be called to
     # update the actual display LEDs.
-    display.write_display()   
+    display.write_display()  
+    
+ def setBrightness (bright):
+    set_brightness (bright)
 
 # General IO
 init_GPIO()
