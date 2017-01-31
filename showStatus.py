@@ -31,8 +31,8 @@ def startShowStatus ():
         elif dataToShow == "CONTROL":
                 data = readDataFromFile ('datafiles/controlStatus.txt')
                 printMessage (data)
-        elif dataToShow == "STATUS":
-            data = readDataFromFile ('datafiles/statusStatus.txt')
+        elif dataToShow == "SYSTEM":
+            data = readDataFromFile ('datafiles/systemStatus.txt')
             printMessage (data)
         else:
             pass #error
