@@ -47,7 +47,7 @@ def printMessage (message):
     # Write the display buffer to the hardware.  This must be called to
     # update the actual display LEDs.
     display.write_display()
-    
+
 def printNumberMessage (message):
     # Pass in a 4 character string to be printed
     # on the alphanumeric display.
@@ -60,10 +60,10 @@ def printNumberMessage (message):
     display.print_number_str(message[pos:pos+4])
     # Write the display buffer to the hardware.  This must be called to
     # update the actual display LEDs.
-    display.write_display()  
-    
+    display.write_display()
+
 def setBrightness (bright):
-    set_brightness (bright)
+    display.set_brightness (bright)
 
 # General IO
 init_GPIO()
