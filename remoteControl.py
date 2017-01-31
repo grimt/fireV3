@@ -77,10 +77,11 @@ def ledBrightnessUp():
         pass
 
 def ledBrightnessDown():
-    currentBrightness = int (readDataFromFile('datafiles/alphaNumBrightness.txt'))
-    if currentBrightess > 0:
-        currentBrightness -= 1
-        writeDataToFile('datafiles/alphaNumBrightness.txt', str(currentBrightness))
+    try:
+        currentBrightness = int (readDataFromFile('datafiles/alphaNumBrightness.txt'))
+        if currentBrightness > 0:
+            currentBrightness -= 1
+            writeDataToFile('datafiles/alphaNumBrightness.txt', str(currentBrightness))
     except:
         pass
 
