@@ -69,6 +69,8 @@ class cFire:
         print "Control Status      : " + self.controlStatus
         print "Time Override       : " + self.timeOverride
 
+        # TODO print out values from all datafiles
+
     def runControlAlgorithm(self):
         if self.controlStatus == 'OFF':
             self.switchFireOff()
