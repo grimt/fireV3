@@ -12,7 +12,7 @@ def startShowStatus ():
     while True:
         # First set the brightness
         brightness = readDataFromFile ('datafiles/alphaNumBrightness.txt')
-        setBrightness (int(brightness))
+        setBrightness (brightness)
         dataToShow = readDataFromFile('datafiles/showStatus.txt')
  #       print dataToShow
         if dataToShow == "MEASURED":

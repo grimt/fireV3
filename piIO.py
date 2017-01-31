@@ -48,7 +48,7 @@ def printMessage (message):
     # update the actual display LEDs.
     display.write_display()
     
- def printNumberMessage (message):
+def printNumberMessage (message):
     # Pass in a 4 character string to be printed
     # on the alphanumeric display.
     # Similar to printMessage but will interpret periods not as
@@ -62,7 +62,7 @@ def printMessage (message):
     # update the actual display LEDs.
     display.write_display()  
     
- def setBrightness (bright):
+def setBrightness (bright):
     set_brightness (bright)
 
 # General IO
