@@ -69,7 +69,18 @@ class cFire:
         print "Control Status      : " + self.controlStatus
         print "Time Override       : " + self.timeOverride
 
-        # TODO print out values from all datafiles
+        print "=============Datafiles==============="
+       
+        print "Control Status: " + readDataFromFile('datafiles/controlStatus.txt')
+        print "Desired temperature: " + readDataFromFile('datafiles/desiredTemperature.txt')
+        print "Measured Temperature: " + readDataFromFile('datafiles/measuredTemperature.txt')
+        print "showStatus: " + readDataFromFile('datafiles/showStatus.txt')
+        print "systemStatus: " + readDataFromFile('datafiles/systemStatus.txt')
+        print "timeOverride: " + readDataFromFile('datafiles/timeOverride.txt')
+        print "LED Brightness: " + readDataFromFile('datafiles/alphaNumBrightness.txt')
+        
+       
+        
 
     def runControlAlgorithm(self):
         if self.controlStatus == 'OFF':
