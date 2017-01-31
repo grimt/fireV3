@@ -20,6 +20,8 @@ REMOTE_KEY_YELLOW = 4
 REMOTE_KEY_BLUE = 5
 REMOTE_KEY_UP = 103
 REMOTE_KEY_DOWN = 108
+LED_BRIGHTNESS_KEY_UP = 24
+LED_BRIGHTNESS_KEY_DOWN = 38
 
 def updateOn ():
     writeDataToFile ('datafiles/controlStatus.txt', 'ON')
@@ -65,6 +67,22 @@ def desiredTemperatureDown():
     except:
         pass
 
+def ledBrightnessUp():
+    try:
+        currentBrightness = int (readDataFromFile('datafiles/alphaNumBrightness.txt'))
+        if currentBrightness < 15:
+            currentBrightness += 1
+            writeDataToFile('datafiles/alphaNumBrightness.txt', str(currentBrightness))
+    except:
+        pass
+
+def ledBrightnessDown():
+    currentBrightness = int (readDataFromFile('datafiles/alphaNumBrightness.txt'))
+    if currentBrighntess > 0:
+        currentBrightness -= 1
+        writeDataToFile('datafiles/alphaNumBrightness.txt', str(currentBrightness))
+    except:
+        pass
 
 dev = InputDevice ('/dev/input/event0')
 def startRemoteScanning():
@@ -96,6 +114,10 @@ def startRemoteScanning():
                     desiredTemperatureDown()
                 elif event.code == REMOTE_KEY_NONE:
                     pass
+                elif event.code == LED_BRIGHTNESS_KEY_UP:
+                    ledBrightnessUp()
+                elif event.code == LED_BRIGHTNESS_KEY_DOWN:
+                    ledBrightnessDown()
                 else:
                     # TODO Up/DOWN for desired temperature
                     print "Code: " + str (event.code)
