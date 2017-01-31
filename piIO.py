@@ -57,7 +57,7 @@ def printNumberMessage (message):
     # Clear the display buffer.
     display.clear()
     # Print a 4 character string to the display buffer.
-    display.print_number_str(message[pos:pos+4])
+    display.print_number_str(message[pos:pos+5])
     # Write the display buffer to the hardware.  This must be called to
     # update the actual display LEDs.
     display.write_display()

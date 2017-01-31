@@ -12,15 +12,13 @@ def startShowStatus ():
     while True:
         # First set the brightness
         brightness = readDataFromFile ('datafiles/alphaNumBrightness.txt')
-        setBrightness (brightness)
+        setBrightness (int(brightness))
         dataToShow = readDataFromFile('datafiles/showStatus.txt')
  #       print dataToShow
         if dataToShow == "MEASURED":
             data = readDataFromFile('datafiles/measuredTemperature.txt')
-            print "Temp: " +  data
-            # remove the decimal point as it takes up a whole character
-            # data = data.replace(".","")
             data = 'm' + data
+            # Take care of the decimal point
             printNumberMessage (data)
         elif dataToShow == "DESIRED":
             data = readDataFromFile ('datafiles/desiredTemperature.txt')
