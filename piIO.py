@@ -6,6 +6,7 @@
 
 # Requires the following:
 
+#TODO - Consider movinf this file in to the lib folder
 
 import time
 from lib.libLog import initLogging
