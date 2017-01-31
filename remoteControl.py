@@ -42,8 +42,8 @@ def toggleDisplayMode():
     elif currentStatus == "BLANK":
         writeDataToFile ('datafiles/showStatus.txt', "CONTROL")
     elif currentStatus == "CONTROL":
-        writeDataToFile ('datafiles/showStatus.txt', "STATUS")
-    elif currentStatus == "STATUS":
+        writeDataToFile ('datafiles/showStatus.txt', "SYSTEM")
+    elif currentStatus == "SYSTEM":
         writeDataToFile ('datafiles/showStatus.txt', "MEASURED")
     else:
         pass #error
