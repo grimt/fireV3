@@ -23,6 +23,9 @@ def calcTemp(rTemp):
 
 def startTempSensor ():
 
+    
+    #TODO add code to handle Bluetooth dropping
+    
     tempSensorLogger = initLogging('/var/log/fireV3/tempSensor.log')
     
     #bluetooth_adr = sys.argv[1] # 'A0:E6:F8:AF:3C:06'
