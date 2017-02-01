@@ -28,6 +28,9 @@ def time_in_range(start, end, x):
 
 def startTemperatureOverride():
     while True:
+        
+        # read timeCount from file
+        # if timeCount == 0 - set timeCount to 30 or whatever then do all this
     	localtime = datetime.datetime.time(datetime.datetime.now())
     	start = datetime.time(16, 0, 0) # 4pm
     	end = datetime.time(22, 0, 0) # 10pm
@@ -39,6 +42,7 @@ def startTemperatureOverride():
             # Tell the world we are in override mode.
             writeDataToFile ('datafiles/timeOverride.txt', 'ON')
 
+        # always decrement time count and write to a file
         time.sleep (60 * 30) # check again in 30 minutes
         #time.sleep (30) # use 30 seconds for debug purposes
         
