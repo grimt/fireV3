@@ -70,7 +70,7 @@ class cFire:
         print "Time Override       : " + self.timeOverride
 
         print "=============Datafiles==============="
-       
+
         print "Control Status: " + readDataFromFile('datafiles/controlStatus.txt')
         print "Desired temperature: " + readDataFromFile('datafiles/desiredTemperature.txt')
         print "Measured Temperature: " + readDataFromFile('datafiles/measuredTemperature.txt')
@@ -78,9 +78,9 @@ class cFire:
         print "systemStatus: " + readDataFromFile('datafiles/systemStatus.txt')
         print "timeOverride: " + readDataFromFile('datafiles/timeOverride.txt')
         print "LED Brightness: " + readDataFromFile('datafiles/alphaNumBrightness.txt')
-        
-       
-        
+
+
+
 
     def runControlAlgorithm(self):
         if self.controlStatus == 'OFF':
@@ -119,9 +119,11 @@ showMessageThread = Thread(target=startShowStatus, args=())
 showMessageThread.daemon = True
 showMessageThread.start()
 
+#TODO - Consider moving all logs and data files to a USB drive
 writeDataToFile('datafiles/showStatus.txt', "MEASURED")
 writeDataToFile('datafiles/systemStatus.txt', "GOOD") #BTEr Batt etc. show any errors
 writeDataToFile ('datafiles/alphaNumBrightness.txt', "2") # 1 to 15 (leave off 0 as this is the same as blank
+writeDataToFile ('datafiles/overrideCount.txt', "30") # Check if we need to do a time override every 30 minutes
 
 try:
     while True:
