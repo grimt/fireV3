@@ -120,7 +120,7 @@ showMessageThread.daemon = True
 showMessageThread.start()
 
 #TODO - Consider moving all logs and data files to a USB drive
-writeDataToFile('datafiles/showStatus.txt', "MEASURED")
+writeDataToFile('datafiles/showStatus.txt', "BLANK") # Default to nothing on the alphanumeric
 writeDataToFile('datafiles/systemStatus.txt', "GOOD") #BTEr Batt etc. show any errors
 writeDataToFile ('datafiles/alphaNumBrightness.txt', "2") # 1 to 15 (leave off 0 as this is the same as blank
 writeDataToFile ('datafiles/overrideCount.txt', "30") # Check if we need to do a time override every 30 minutes
