@@ -14,6 +14,8 @@ def startShowStatus ():
         try:
             brightness = int (readDataFromFile ('datafiles/alphaNumBrightness.txt'))
             setBrightness (brightness)
+        except ValueError:
+            print "Value error reading: " + readDataFromFile ('datafiles/alphaNumBrightness.txt')
 
         dataToShow = readDataFromFile('datafiles/showStatus.txt')
  #       print dataToShow
