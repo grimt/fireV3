@@ -11,8 +11,10 @@ from piIO import printMessage, printNumberMessage, setBrightness
 def startShowStatus ():
     while True:
         # First set the brightness
-        brightness = int (readDataFromFile ('datafiles/alphaNumBrightness.txt'))
-        setBrightness (brightness)
+        try:
+            brightness = int (readDataFromFile ('datafiles/alphaNumBrightness.txt'))
+            setBrightness (brightness)
+
         dataToShow = readDataFromFile('datafiles/showStatus.txt')
  #       print dataToShow
         if dataToShow == "MEASURED":

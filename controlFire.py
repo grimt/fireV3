@@ -78,6 +78,7 @@ class cFire:
         print "systemStatus: " + readDataFromFile('datafiles/systemStatus.txt')
         print "timeOverride: " + readDataFromFile('datafiles/timeOverride.txt')
         print "LED Brightness: " + readDataFromFile('datafiles/alphaNumBrightness.txt')
+        print "Override count: " + readDataFromFile('datafiles/overrideCount.txt.txt')
 
 
 
