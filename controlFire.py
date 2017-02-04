@@ -14,6 +14,7 @@ from remoteControl import startRemoteScanning
 from tempOverride import startTemperatureOverride
 from tempSensor import startTempSensor
 from showStatus import startShowStatus
+from piIO.py import switch_fire_relay
 
 FIRE_ON = 1
 FIRE_OFF = 0
@@ -30,13 +31,13 @@ class cFire:
         if self.fireState == FIRE_ON:
             print 'Switch fire off'
             self.fireState = FIRE_OFF
-            # Switch off fire at relay
+            switch_fire_relay (FIRE_OFF)
 
     def switchFireOn(self):
         if self.fireState == FIRE_OFF:
             print 'switch fire on'
             self.fireState = FIRE_ON
-            # Switch on fire at relay
+            switch_fire_relay (FIRE_ON)
 
     def runAutoControlAlgorithm (self):
         controlFireLogger.debug ('Hysteresis: current state: ' + str (self.fireState)\
@@ -136,7 +137,6 @@ try:
 
         fire.runControlAlgorithm()
 
-        # TODO Covert other 1 seconds sleeps to a #define in a library so we can test modifying the value
         time.sleep(CONTROL_SLEEP_TIME)
 except KeyboardInterrupt:
     fire.switchFireOff()
