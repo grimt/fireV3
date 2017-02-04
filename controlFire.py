@@ -14,7 +14,7 @@ from remoteControl import startRemoteScanning
 from tempOverride import startTemperatureOverride
 from tempSensor import startTempSensor
 from showStatus import startShowStatus
-from piIO.py import switch_fire_relay
+from piIO import switch_fire_relay
 
 FIRE_ON = 1
 FIRE_OFF = 0
