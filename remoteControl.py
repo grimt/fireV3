@@ -25,17 +25,17 @@ LED_BRIGHTNESS_KEY_DOWN = 38
 
 def updateOn ():
     writeDataToFile ('datafiles/controlStatus.txt', 'ON')
-    writeDataToFile ('datafiles/showStatus', "CONTROL")
+    writeDataToFile ('datafiles/showStatus.txt', "CONTROL")
 
 def updateOff ():
     writeDataToFile ('datafiles/controlStatus.txt', 'OFF')
-    writeDataToFile ('datafiles/showStatus', "CONTROL")
+    writeDataToFile ('datafiles/showStatus.txt', "CONTROL")
 
 def updateAuto():
     writeDataToFile ('datafiles/controlStatus.txt', 'AUTO')
     # Default desired temperature to 19 when moving to AUTO
     writeDataToFile('datafiles/desiredTemperature.txt', str(19))
-    writeDataToFile ('datafiles/showStatus', "CONTROL")
+    writeDataToFile ('datafiles/showStatus.txt', "CONTROL")
 
 def toggleDisplayMode():
     # display measured -> display desired -> display off
@@ -58,7 +58,7 @@ def desiredTemperatureUp():
         currentTemp = int (readDataFromFile('datafiles/desiredTemperature.txt'))
         currentTemp += 1
         writeDataToFile('datafiles/desiredTemperature.txt', str(currentTemp))
-        writeDataToFile ('datafiles/showStatus', "DESIRED")
+        writeDataToFile ('datafiles/showStatus.txt', "DESIRED")
     except:
         pass
 
@@ -68,7 +68,7 @@ def desiredTemperatureDown():
         if currentTemp > 0:
             currentTemp -= 1
             writeDataToFile('datafiles/desiredTemperature.txt', str(currentTemp))
-            writeDataToFile ('datafiles/showStatus', "DESIRED")
+            writeDataToFile ('datafiles/showStatus.txt', "DESIRED")
     except:
         pass
 
