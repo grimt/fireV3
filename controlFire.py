@@ -14,7 +14,7 @@ from remoteControl import startRemoteScanning
 from tempOverride import startTemperatureOverride
 from tempSensor import startTempSensor
 from showStatus import startShowStatus
-from piIO import switch_fire_relay
+from piIO import switchFireRelay
 
 FIRE_ON = 1
 FIRE_OFF = 0
@@ -31,13 +31,13 @@ class cFire:
         if self.fireState == FIRE_ON:
             print 'Switch fire off'
             self.fireState = FIRE_OFF
-            switch_fire_relay (FIRE_OFF)
+            switchFireRelay (FIRE_OFF)
 
     def switchFireOn(self):
         if self.fireState == FIRE_OFF:
             print 'switch fire on'
             self.fireState = FIRE_ON
-            switch_fire_relay (FIRE_ON)
+            switchFireRelay (FIRE_ON)
 
     def runAutoControlAlgorithm (self):
         controlFireLogger.debug ('Hysteresis: current state: ' + str (self.fireState)\

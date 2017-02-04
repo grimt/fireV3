@@ -29,7 +29,7 @@ def init_GPIO():
 
     GPIO.setup(OUT_RELAY_PIN, GPIO.OUT)
 
-def switch_fire_relay (off_or_on):
+def switchFireRelay (off_or_on):
     if off_or_on == ON:
         GPIO.output (OUT_RELAY_PIN, True)
         piHwIoLogger.info ("Relay is ON")
@@ -84,11 +84,11 @@ piHwIoLogger = initLogging('/var/log/fireV3/piIO.log')
 if __name__ == "__main__":
     print "Executing remoteControl.py test code"
     print "Switch relay on: "
-    switch_fire_relay(ON)
+    switchFireRelay(ON)
     print "Wait for 1 seconds"
     time.sleep(1)
     print "Switch relay off: "
-    switch_fire_relay(OFF)
+    switchFireRelay(OFF)
 
     print "Now test the Alphanumeric"
     printMessage ('KISS')
