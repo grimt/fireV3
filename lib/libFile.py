@@ -29,6 +29,13 @@ def readDataFromFile(filename):
 
     return data
 
+def writeData (path, data):
+    writeDataToFile (path, data)
+
+def readData (path):
+    return readDataFromFile (path)
+
+
 libFileLogger = initLogging('/var/log/fireV3/libFile.log')
 
 # Test code
