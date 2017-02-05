@@ -4,7 +4,7 @@
 # to the alphanumeric display based on the contents.
 
 import time
-from lib.libFile import readDataFromFile
+from lib.libFile import readData
 from lib.libConstants import UI_SLEEP_TIME
 from piIO import printMessage, printNumberMessage, setBrightness
 
@@ -12,29 +12,29 @@ def startShowStatus ():
     while True:
         # First set the brightness
         try:
-            brightness = int (readDataFromFile ('datafiles/alphaNumBrightness.txt'))
+            brightness = int (readData ('datafiles/alphaNumBrightness.txt'))
             setBrightness (brightness)
         except ValueError:
-            print "Value error reading: " + readDataFromFile ('datafiles/alphaNumBrightness.txt')
+            print "Value error reading: " + readData ('datafiles/alphaNumBrightness.txt')
 
-        dataToShow = readDataFromFile('datafiles/showStatus.txt')
+        dataToShow = readData('datafiles/showStatus.txt')
  #       print dataToShow
         if dataToShow == "MEASURED":
-            data = readDataFromFile('datafiles/measuredTemperature.txt')
+            data = readData('datafiles/measuredTemperature.txt')
             data = 'm' + data
             # Take care of the decimal point
             printNumberMessage (data)
         elif dataToShow == "DESIRED":
-            data = readDataFromFile ('datafiles/desiredTemperature.txt')
+            data = readData ('datafiles/desiredTemperature.txt')
             data = 'd' + data
             printMessage (data)
         elif dataToShow == "BLANK":
             printMessage ('    ')
         elif dataToShow == "CONTROL":
-                data = readDataFromFile ('datafiles/controlStatus.txt')
+                data = readData ('datafiles/controlStatus.txt')
                 printMessage (data)
         elif dataToShow == "SYSTEM":
-            data = readDataFromFile ('datafiles/systemStatus.txt')
+            data = readData ('datafiles/systemStatus.txt')
             printMessage (data)
         else:
             pass #error
@@ -42,7 +42,7 @@ def startShowStatus ():
 
 def OLD_startShowStatus ():
     while True:
-        data = readDataFromFile('datafiles/measuredTemperature.txt')
+        data = readData('datafiles/measuredTemperature.txt')
         print str(data)
         printMessage (data)
         time.sleep(1)

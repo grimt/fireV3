@@ -13,11 +13,11 @@ import time
 import datetime
 
 from lib.libLog import initLogging
-from lib.libFile import  readDataFromFile, writeDataToFile
+from lib.libFile import  readData, writeData
 
 
 def updateOff ():
-    writeDataToFile ('datafiles/controlStatus.txt', 'OFF')
+    writeData ('datafiles/controlStatus.txt', 'OFF')
 
 def time_in_range(start, end, x):
     """Return true if x is in the range [start, end]"""
@@ -30,9 +30,9 @@ def startTemperatureOverride():
     while True:
 
         # read timeCount from file
-        currentOverrideCount =  int (readDataFromFile ('datafiles/overrideCount.txt'))
+        currentOverrideCount =  int (readData ('datafiles/overrideCount.txt'))
         currentOverrideCount -= 1
-        writeDataToFile ('datafiles/overrideCount.txt', str(currentOverrideCount))
+        writeData ('datafiles/overrideCount.txt', str(currentOverrideCount))
         if currentOverrideCount == 0:
             currentOverrideCount = 30
     	    localtime = datetime.datetime.time(datetime.datetime.now())
@@ -44,7 +44,7 @@ def startTemperatureOverride():
                 tempOverrideLogger.warning ('Switch fire OFF as outside time range at: ' + str(localtime))
                 updateOff ()
                 # Tell the world we are in override mode.
-                writeDataToFile ('datafiles/timeOverride.txt', 'ON')
+                writeData ('datafiles/timeOverride.txt', 'ON')
 
         time.sleep (60 * 1) # sleep for 1 minute
 

@@ -10,7 +10,7 @@
 from lib.libLog import initLogging
 # modules to read from the flirc
 from evdev import InputDevice, categorize, ecodes
-from lib.libFile import readDataFromFile, writeDataToFile
+from lib.libFile import readData, writeData
 
 # Remote control Key definitions
 REMOTE_KEY_NONE = 0
@@ -24,69 +24,69 @@ LED_BRIGHTNESS_KEY_UP = 24
 LED_BRIGHTNESS_KEY_DOWN = 38
 
 def updateOn ():
-    writeDataToFile ('datafiles/controlStatus.txt', 'ON')
-    writeDataToFile ('datafiles/showStatus.txt', "CONTROL")
+    writeData ('datafiles/controlStatus.txt', 'ON')
+    writeData ('datafiles/showStatus', "CONTROL")
 
 def updateOff ():
-    writeDataToFile ('datafiles/controlStatus.txt', 'OFF')
-    writeDataToFile ('datafiles/showStatus.txt', "CONTROL")
+    writeData ('datafiles/controlStatus.txt', 'OFF')
+    writeData ('datafiles/showStatus', "CONTROL")
 
 def updateAuto():
-    writeDataToFile ('datafiles/controlStatus.txt', 'AUTO')
+    writeData ('datafiles/controlStatus.txt', 'AUTO')
     # Default desired temperature to 19 when moving to AUTO
-    writeDataToFile('datafiles/desiredTemperature.txt', str(19))
-    writeDataToFile ('datafiles/showStatus.txt', "CONTROL")
+    writeData('datafiles/desiredTemperature.txt', str(19))
+    writeData ('datafiles/showStatus', "CONTROL")
 
 def toggleDisplayMode():
     # display measured -> display desired -> display off
-    currentStatus = readDataFromFile('datafiles/showStatus.txt')
+    currentStatus = readData('datafiles/showStatus.txt')
     if currentStatus == "MEASURED":
-        writeDataToFile ('datafiles/showStatus.txt', "DESIRED")
+        writeData ('datafiles/showStatus.txt', "DESIRED")
     elif currentStatus == "DESIRED":
-        writeDataToFile ('datafiles/showStatus.txt', "BLANK")
+        writeData ('datafiles/showStatus.txt', "BLANK")
     elif currentStatus == "BLANK":
-        writeDataToFile ('datafiles/showStatus.txt', "CONTROL")
+        writeData ('datafiles/showStatus.txt', "CONTROL")
     elif currentStatus == "CONTROL":
-        writeDataToFile ('datafiles/showStatus.txt', "SYSTEM")
+        writeData ('datafiles/showStatus.txt', "SYSTEM")
     elif currentStatus == "SYSTEM":
-        writeDataToFile ('datafiles/showStatus.txt', "MEASURED")
+        writeData ('datafiles/showStatus.txt', "MEASURED")
     else:
         pass #error
 
 def desiredTemperatureUp():
     try:
-        currentTemp = int (readDataFromFile('datafiles/desiredTemperature.txt'))
+        currentTemp = int (readData('datafiles/desiredTemperature.txt'))
         currentTemp += 1
-        writeDataToFile('datafiles/desiredTemperature.txt', str(currentTemp))
-        writeDataToFile ('datafiles/showStatus.txt', "DESIRED")
+        writeData('datafiles/desiredTemperature.txt', str(currentTemp))
+        writeData ('datafiles/showStatus', "DESIRED")
     except:
         pass
 
 def desiredTemperatureDown():
     try:
-        currentTemp = int (readDataFromFile('datafiles/desiredTemperature.txt'))
+        currentTemp = int (readData('datafiles/desiredTemperature.txt'))
         if currentTemp > 0:
             currentTemp -= 1
-            writeDataToFile('datafiles/desiredTemperature.txt', str(currentTemp))
-            writeDataToFile ('datafiles/showStatus.txt', "DESIRED")
+            writeData('datafiles/desiredTemperature.txt', str(currentTemp))
+            writeData ('datafiles/showStatus', "DESIRED")
     except:
         pass
 
 def ledBrightnessUp():
     try:
-        currentBrightness = int (readDataFromFile('datafiles/alphaNumBrightness.txt'))
+        currentBrightness = int (readData('datafiles/alphaNumBrightness.txt'))
         if currentBrightness < 15:
             currentBrightness += 1
-            writeDataToFile('datafiles/alphaNumBrightness.txt', str(currentBrightness))
+            writeData('datafiles/alphaNumBrightness.txt', str(currentBrightness))
     except:
         pass
 
 def ledBrightnessDown():
     try:
-        currentBrightness = int (readDataFromFile('datafiles/alphaNumBrightness.txt'))
+        currentBrightness = int (readData('datafiles/alphaNumBrightness.txt'))
         if currentBrightness > 0:
             currentBrightness -= 1
-            writeDataToFile('datafiles/alphaNumBrightness.txt', str(currentBrightness))
+            writeData('datafiles/alphaNumBrightness.txt', str(currentBrightness))
     except:
         pass
 
@@ -104,7 +104,7 @@ def startRemoteScanning():
                 remoteControlLogger.debug ( 'type: ' + str (event.type) + \
                 ' code: ' + str (event.code) + ' value ' + str (event.value))
                 # Pressing any key switches of the time override
-                writeDataToFile ('datafiles/timeOverride.txt', 'OFF')
+                writeData ('datafiles/timeOverride.txt', 'OFF')
 
                 if event.code == REMOTE_KEY_RED:
                     updateOn()

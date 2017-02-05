@@ -7,14 +7,14 @@ import signal
 import os
 from threading import Thread, Event
 
-from lib.libFile import readDataFromFile, writeDataToFile
+from lib.libFile import readData, writeData
 from lib.libLog import initLogging
 from lib.libConstants import CONTROL_SLEEP_TIME
 from remoteControl import startRemoteScanning
 from tempOverride import startTemperatureOverride
 from tempSensor import startTempSensor
 from showStatus import startShowStatus
-from piIO import switch_fire_relay
+from piIO import switchFireRelay
 
 FIRE_ON = 1
 FIRE_OFF = 0
@@ -31,13 +31,13 @@ class cFire:
         if self.fireState == FIRE_ON:
             print 'Switch fire off'
             self.fireState = FIRE_OFF
-            switch_fire_relay (FIRE_OFF)
+            switchFireRelay (FIRE_OFF)
 
     def switchFireOn(self):
         if self.fireState == FIRE_OFF:
             print 'switch fire on'
             self.fireState = FIRE_ON
-            switch_fire_relay (FIRE_ON)
+            switchFireRelay (FIRE_ON)
 
     def runAutoControlAlgorithm (self):
         controlFireLogger.debug ('Hysteresis: current state: ' + str (self.fireState)\
@@ -72,14 +72,14 @@ class cFire:
 
         print "=============Datafiles==============="
 
-        print "Control Status: " + readDataFromFile('datafiles/controlStatus.txt')
-        print "Desired temperature: " + readDataFromFile('datafiles/desiredTemperature.txt')
-        print "Measured Temperature: " + readDataFromFile('datafiles/measuredTemperature.txt')
-        print "showStatus: " + readDataFromFile('datafiles/showStatus.txt')
-        print "systemStatus: " + readDataFromFile('datafiles/systemStatus.txt')
-        print "timeOverride: " + readDataFromFile('datafiles/timeOverride.txt')
-        print "LED Brightness: " + readDataFromFile('datafiles/alphaNumBrightness.txt')
-        print "Override count: " + readDataFromFile('datafiles/overrideCount.txt.txt')
+        print "Control Status: " + readData('datafiles/controlStatus.txt')
+        print "Desired temperature: " + readData('datafiles/desiredTemperature.txt')
+        print "Measured Temperature: " + readData('datafiles/measuredTemperature.txt')
+        print "showStatus: " + readData('datafiles/showStatus.txt')
+        print "systemStatus: " + readData('datafiles/systemStatus.txt')
+        print "timeOverride: " + readData('datafiles/timeOverride.txt')
+        print "LED Brightness: " + readData('datafiles/alphaNumBrightness.txt')
+        print "Override count: " + readData('datafiles/overrideCount.txt.txt')
 
 
 
@@ -122,18 +122,18 @@ showMessageThread.daemon = True
 showMessageThread.start()
 
 #TODO - Consider moving all logs and data files to a USB drive
-writeDataToFile('datafiles/showStatus.txt', "BLANK") # Default to nothing on the alphanumeric
-writeDataToFile('datafiles/systemStatus.txt', "GOOD") #BTEr Batt etc. show any errors
-writeDataToFile ('datafiles/alphaNumBrightness.txt', "2") # 1 to 15 (leave off 0 as this is the same as blank
-writeDataToFile ('datafiles/overrideCount.txt', "30") # Check if we need to do a time override every 30 minutes
+writeData ('datafiles/showStatus.txt', "BLANK") # Default to nothing on the alphanumeric
+writeData ('datafiles/systemStatus.txt', "GOOD") #BTEr Batt etc. show any errors
+writeData ('datafiles/alphaNumBrightness.txt', "2") # 1 to 15 (leave off 0 as this is the same as blank
+writeData ('datafiles/overrideCount.txt', "30") # Check if we need to do a time override every 30 minutes
 
 try:
     while True:
 
-        fire.desiredTemperature = readDataFromFile('datafiles/desiredTemperature.txt')
-        fire.measuredTemperature = readDataFromFile('datafiles/measuredTemperature.txt')
-        fire.controlStatus = readDataFromFile('datafiles/controlStatus.txt')
-        fire.timeOverride = readDataFromFile('datafiles/timeOverride.txt')
+        fire.desiredTemperature = readData('datafiles/desiredTemperature.txt')
+        fire.measuredTemperature = readData('datafiles/measuredTemperature.txt')
+        fire.controlStatus = readData('datafiles/controlStatus.txt')
+        fire.timeOverride = readData('datafiles/timeOverride.txt')
 
         fire.runControlAlgorithm()
 

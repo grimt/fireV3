@@ -7,7 +7,7 @@ import sys
 import time
 
 from lib.libLog import initLogging
-from lib.libFile import writeDataToFile
+from lib.libFile import writeData
 
 #TODO - can we use int from hex
 def floatfromhex(h):
@@ -23,11 +23,11 @@ def calcTemp(rTemp):
 
 def startTempSensor ():
 
-    
+
     #TODO add code to handle Bluetooth dropping
-    
+
     tempSensorLogger = initLogging('/var/log/fireV3/tempSensor.log')
-    
+
     #bluetooth_adr = sys.argv[1] # 'A0:E6:F8:AF:3C:06'
     bluetooth_adr = "A0:E6:F8:AF:3C:06"
     print "connecting to " + bluetooth_adr
@@ -66,7 +66,7 @@ def startTempSensor ():
 
         #print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
         tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
-        writeDataToFile ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
+        writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
         # Switch off the temp sensor
         tool.sendline('char-write-cmd 0x0027 00')
         time.sleep(3)
