@@ -46,20 +46,16 @@ def startTempSensor ():
     while True:
         #TODO move delay between reads to 30 seconds
         #TODO investigate what happens when bluetooth goes down
-        # time.sleep(5)
-        # Switch on IR Temp sensor
+        # Switch on  Temp sensor
         tool.sendline('char-write-cmd 0x0027 01')
         time.sleep(1)
-        # Read the temp/humidity data
+        # Read the temp data
         tool.sendline('char-read-hnd 0x0024')
         tool.expect('descriptor: .*')
         rVal = tool.after.split()
-        #print "Raw data : " + str(rVal)
         rObjTemp = floatfromhex(rVal[2] + rVal[1])
-        #print "Raw obj temp in decimal: " + str (rObjTemp)
 
         rAmbTemp = floatfromhex(rVal[4] + rVal[3])
-        # print "Humidity in decimal: " + str (rAmbTemp)
 
         objTemp = calcTemp (rObjTemp)
         ambTemp = calcTemp (rAmbTemp)
@@ -69,4 +65,4 @@ def startTempSensor ():
         writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
         # Switch off the temp sensor
         tool.sendline('char-write-cmd 0x0027 00')
-        time.sleep(3)
+        time.sleep(30)

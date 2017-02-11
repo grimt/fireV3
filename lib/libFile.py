@@ -30,6 +30,7 @@ def readDataFromFile(filename):
     return data
 
 def writeData (path, data):
+    #print "Write to file: " + path
     writeDataToFile (path, data)
 
 def readData (path):
