@@ -52,7 +52,8 @@ def startTempSensor ():
             # Read the temp data
             tool.sendline('char-read-hnd 0x0024')
             try:
-                tool.expect('descriptor: .*', timeout=5)
+                i = tool.expect('descriptor: .*', timeout=5)
+#                tool.expect('descriptor: .*', timeout=5)
                 rVal = tool.after.split()
                 rObjTemp = floatfromhex(rVal[2] + rVal[1])
 
