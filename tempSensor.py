@@ -50,7 +50,7 @@ def startTempSensor ():
         tool.sendline('char-write-cmd 0x0027 01')
         time.sleep(1)
         # Read the temp data
-        tool.sendline('char-read-hnd 0x0024', timeout=10)
+        tool.sendline('char-read-hnd 0x0024')
         try:
             tool.expect('descriptor: .*', timeout=5)
             rVal = tool.after.split()
