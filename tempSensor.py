@@ -35,37 +35,39 @@ def startTempSensor ():
     startUSB = pexpect.spawn ('sudo hciconfig hci0 up')
     tool = pexpect.spawn('gatttool -b ' + bluetooth_adr + ' --interactive')
     tool.expect('\[LE\]>')
-    print "Preparing to connect. You might need to press the side button..."
-    tool.sendline('connect')
-    # test for success of connect
-    tool.expect('Connection successful')
-    print "Connection successful"
-    # Switch on IR Temp sensor
-    #tool.sendline('char-write-cmd 0x0027 01')
-    tool.expect('\[LE\]>')
     while True:
-        #TODO move delay between reads to 30 seconds
-        #TODO investigate what happens when bluetooth goes down
-        # Switch on  Temp sensor
-        tool.sendline('char-write-cmd 0x0027 01')
-        time.sleep(1)
-        # Read the temp data
-        tool.sendline('char-read-hnd 0x0024')
-        try:
-            tool.expect('descriptor: .*', timeout=5)
-            rVal = tool.after.split()
-            rObjTemp = floatfromhex(rVal[2] + rVal[1])
+        print "Preparing to connect. You might need to press the side button..."
+        tool.sendline('connect')
+        # test for success of connect
+        tool.expect('Connection successful', timeout=60)
+        print "Connection successful"
+        writeData ('datafiles/systemStatus.txt', "GOOD")
+        tool.expect('\[LE\]>')
+        goodConnection = True
+        while goodConnection == True:
+            #TODO investigate what happens when bluetooth goes down
+            # Switch on  Temp sensor
+            tool.sendline('char-write-cmd 0x0027 01')
+            time.sleep(1)
+            # Read the temp data
+            tool.sendline('char-read-hnd 0x0024')
+            try:
+                tool.expect('descriptor: .*', timeout=5)
+                rVal = tool.after.split()
+                rObjTemp = floatfromhex(rVal[2] + rVal[1])
 
-            rAmbTemp = floatfromhex(rVal[4] + rVal[3])
+                rAmbTemp = floatfromhex(rVal[4] + rVal[3])
 
-            objTemp = calcTemp (rObjTemp)
-            ambTemp = calcTemp (rAmbTemp)
+                objTemp = calcTemp (rObjTemp)
+                ambTemp = calcTemp (rAmbTemp)
 
-            #print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
-            tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
-            writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
-        except:
-            print str(tool)
-        # Switch off the temp sensor
-        tool.sendline('char-write-cmd 0x0027 00')
-        time.sleep(30)
+                #print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
+                tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
+                writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
+            except:
+                print str(tool)
+                goodConnection = False
+                writeData ('datafiles/systemStatus.txt', "BTEr")
+            # Switch off the temp sensor
+            tool.sendline('char-write-cmd 0x0027 00')
+            time.sleep(3)
