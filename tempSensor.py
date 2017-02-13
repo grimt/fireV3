@@ -51,18 +51,21 @@ def startTempSensor ():
         time.sleep(1)
         # Read the temp data
         tool.sendline('char-read-hnd 0x0024', timeout=10)
-        tool.expect('descriptor: .*')
-        rVal = tool.after.split()
-        rObjTemp = floatfromhex(rVal[2] + rVal[1])
+        try:
+            tool.expect('descriptor: .*', timeout=5)
+            rVal = tool.after.split()
+            rObjTemp = floatfromhex(rVal[2] + rVal[1])
 
-        rAmbTemp = floatfromhex(rVal[4] + rVal[3])
+            rAmbTemp = floatfromhex(rVal[4] + rVal[3])
 
-        objTemp = calcTemp (rObjTemp)
-        ambTemp = calcTemp (rAmbTemp)
+            objTemp = calcTemp (rObjTemp)
+            ambTemp = calcTemp (rAmbTemp)
 
-        #print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
-        tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
-        writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
+            #print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
+            tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
+            writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
+        except:
+            print str(tool)
         # Switch off the temp sensor
         tool.sendline('char-write-cmd 0x0027 00')
         time.sleep(30)
