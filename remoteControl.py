@@ -47,6 +47,8 @@ def toggleDisplayMode():
     elif currentStatus == "BLANK":
         writeData ('datafiles/showStatus.txt', "CONTROL")
     elif currentStatus == "CONTROL":
+        writeData ('datafiles/showStatus.txt', "BATTERY")
+    elif currentStatus == "BATTERT":
         writeData ('datafiles/showStatus.txt', "SYSTEM")
     elif currentStatus == "SYSTEM":
         writeData ('datafiles/showStatus.txt', "MEASURED")
