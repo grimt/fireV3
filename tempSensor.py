@@ -69,7 +69,8 @@ def startTempSensor ():
                     tool.sendline('char-read-hnd 0x001e')
                     tool.expect('descriptor: .*', timeout=5)
                     rVal = tool.after.split()
-                    print "Battery: " + str(rVal)
+                    #print "Battery: " + str(floatfromhex(rVal[1]))
+                    writeData ('datafiles/batteryLife.txt', "%.0f" % floatfromhex(rVal[1]))
                 else:
                     print "Bad Connection"
                     goodConnection = False
