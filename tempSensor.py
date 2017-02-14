@@ -65,6 +65,11 @@ def startTempSensor ():
                 #print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
                     tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
                     writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
+                    # Now read the battery life
+                    tool.sendline('char-read-hnd 0x001e')
+                    tool.expect('descriptor: .*', timeout=5)
+                    rVal = tool.after.split()
+                    print "Battery: " + str(rVal)
                 else:
                     print "Bad Connection"
                     goodConnection = False
