@@ -36,6 +36,10 @@ def startShowStatus ():
         elif dataToShow == "SYSTEM":
             data = readData ('datafiles/systemStatus.txt')
             printMessage (data)
+        elif dataToShow == "BATTERY":
+            # Read from battery data filedata = readData ('datafiles/desiredTemperature.txt')
+            data = 'b' + data
+            printMessage (data)
         else:
             pass #error
         time.sleep(UI_SLEEP_TIME)
