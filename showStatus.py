@@ -37,7 +37,7 @@ def startShowStatus ():
             data = readData ('datafiles/systemStatus.txt')
             printMessage (data)
         elif dataToShow == "BATTERY":
-            # Read from battery data filedata = readData ('datafiles/desiredTemperature.txt')
+            data = readData ('datafiles/batteryLife.txt')
             data = 'b' + data
             printMessage (data)
         else:
