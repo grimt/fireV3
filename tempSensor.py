@@ -52,7 +52,7 @@ def startTempSensor ():
                 # Read the temp data
                 tool.sendline('char-read-hnd 0x0024')
                 i = 1
-                i = tool.expect(pexpect.TIMEOUT, 'descriptor: .*', timeout=5)
+                i = tool.expect([pexpect.TIMEOUT, 'descriptor: .*'], timeout=5)
 #                tool.expect('descriptor: .*', timeout=5)
                 if i == 1:
                     rVal = tool.after.split()
