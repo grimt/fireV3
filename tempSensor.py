@@ -37,7 +37,8 @@ def startTempSensor ():
         print "Preparing to connect. You might need to press the side button..."
         tool.sendline('connect')
         # test for success of connect
-        tool.expect('Connection successful', timeout=60)
+        #tool.expect('Connection successful', timeout=60)
+        j = tool.expect([pexpect.TIMEOUT, 'Connection successful'], timeout=60)
         if j == 1:
             print "Connection successful"
             writeData ('datafiles/systemStatus.txt', "GOOD")
@@ -51,7 +52,7 @@ def startTempSensor ():
                 # Read the temp data
                 tool.sendline('char-read-hnd 0x0024')
                 i = 1
-                tool.expect('descriptor: .*', timeout=5)
+                i = tool.expect(pexpect.TIMEOUT, 'descriptor: .*', timeout=5)
 #                tool.expect('descriptor: .*', timeout=5)
                 if i == 1:
                     rVal = tool.after.split()
