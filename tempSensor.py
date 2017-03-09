@@ -74,14 +74,19 @@ def startTempSensor ():
                     writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
                     # Now read the battery life
                     tool.sendline('char-read-hnd 0x001e')
-                    tool.expect('descriptor: .*', timeout=5)
-                    rVal = tool.after.split()
-                    #print "Battery: " + str(floatfromhex(rVal[1]))
-                    writeData ('datafiles/batteryLife.txt', "%.0f" % floatfromhex(rVal[1]))
+                    k = tool.expect([pexpect.TIMEOUT, 'descriptor: .*'], timeout=5)
+                    if k == 1:
+                        rVal = tool.after.split()
+                        #print "Battery: " + str(floatfromhex(rVal[1]))
+                        writeData ('datafiles/batteryLife.txt', "%.0f" % floatfromhex(rVal[1]))
+                    else:
+                        goodConnection = False
+                        writeData ('datafiles/systemStatus.txt', "BTEr")
+
                 else:
                     print "Bad Connection"
                     goodConnection = False
                     writeData ('datafiles/systemStatus.txt', "BTEr")
-                    # Switch off the temp sensor
-                    tool.sendline('char-write-cmd 0x0027 00')
-                    time.sleep(3)
+                # Switch off the temp sensor
+                tool.sendline('char-write-cmd 0x0027 00')
+                time.sleep(3)
