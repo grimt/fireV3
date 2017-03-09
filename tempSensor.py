@@ -20,7 +20,7 @@ def floatfromhex(h):
 def connectSensor (myTool):
     print "Preparing to connect. You might need to press the side button..."
     myTool.sendline('connect')
-    j = tool.expect([pexpect.TIMEOUT, 'Connection successful'], timeout=60)
+    j = myTool.expect([pexpect.TIMEOUT, 'Connection successful'], timeout=60)
     return j
 
 def calcTemp(rTemp):
