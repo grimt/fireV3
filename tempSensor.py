@@ -89,3 +89,5 @@ def startTempSensor ():
                     # Switch off the temp sensor
                     tool.sendline('char-write-cmd 0x0027 00')
                     time.sleep(3)
+                else:
+                    time.sleep (1)
