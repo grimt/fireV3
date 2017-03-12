@@ -68,7 +68,7 @@ def startTempSensor ():
                     ambTemp = calcTemp (rAmbTemp)
 
                     # print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
-                    tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
+                    #tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
                     writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
                     # Now read the battery life
                     tool.sendline('char-read-hnd 0x001e')

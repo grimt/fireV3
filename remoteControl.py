@@ -103,8 +103,8 @@ def startRemoteScanning():
         if event.type == ecodes.EV_KEY:
             # my_logger.debug (categorize(event))
             if event.value == 0:  # key up
-                remoteControlLogger.debug ( 'type: ' + str (event.type) + \
-                ' code: ' + str (event.code) + ' value ' + str (event.value))
+                #remoteControlLogger.debug ( 'type: ' + str (event.type) + \
+                #' code: ' + str (event.code) + ' value ' + str (event.value))
                 # Pressing any key switches of the time override
                 writeData ('datafiles/timeOverride.txt', 'OFF')
 

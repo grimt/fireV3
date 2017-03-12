@@ -40,8 +40,8 @@ class cFire:
             switchFireRelay (FIRE_ON)
 
     def runAutoControlAlgorithm (self):
-        controlFireLogger.debug ('Hysteresis: current state: ' + str (self.fireState)\
-         + ' desired: ' + str (self.desiredTemperature) + ' Measured: ' + str (self.measuredTemperature))
+        #controlFireLogger.debug ('Hysteresis: current state: ' + str (self.fireState)\
+         #+ ' desired: ' + str (self.desiredTemperature) + ' Measured: ' + str (self.measuredTemperature))
         try:
             if self.fireState == FIRE_OFF:
                 if float(self.measuredTemperature) <= (float(self.desiredTemperature) - 0.5):
