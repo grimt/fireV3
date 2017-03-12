@@ -124,7 +124,7 @@ showMessageThread.start()
 #TODO - Consider moving all logs and data files to a USB drive
 writeData ('datafiles/showStatus.txt', "BLANK") # Default to nothing on the alphanumeric
 writeData ('datafiles/systemStatus.txt', "GOOD") #BTEr Batt etc. show any errors
-writeData ('datafiles/alphaNumBrightness.txt', "2") # 1 to 15 (leave off 0 as this is the same as blank
+writeData ('datafiles/alphaNumBrightness.txt', "0") # 0 to 15 
 writeData ('datafiles/overrideCount.txt', "30") # Check if we need to do a time override every 30 minutes
 
 try:
