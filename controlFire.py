@@ -64,54 +64,52 @@ class cFire:
             f = open ("debug.txt", 'wt')
             if self.fireState == FIRE_ON:
                 print "Fire is on"
-                f.write("Fire is on")
+                f.write("Fire is on\n")
             else:
                 print "Fire is off"
-                f.write("Fire is off")
+                f.write("Fire is off\n")
 
             print "Desired temperature : " + str(self.desiredTemperature)
-            f.write("Desired temperature : " + str(self.desiredTemperature))
+            f.write("Desired temperature : " + str(self.desiredTemperature) + "\n")
 
             print "Measured temperature: " + str(self.measuredTemperature)
-            f.write( "Measured temperature: " + str(self.measuredTemperature))
+            f.write( "Measured temperature: " + str(self.measuredTemperature) + "\n")
 
             print "Control Status      : " + self.controlStatus
-            f.write ("Control Status      : " + self.controlStatus)
+            f.write ("Control Status      : " + self.controlStatus + "\n")
 
             print "Time Override       : " + self.timeOverride
-            f.write("Time Override       : " + self.timeOverride)
+            f.write("Time Override       : " + self.timeOverride + "\n")
 
             print "=============Datafiles==============="
-            f.write("=============Datafiles===============")
+            f.write("=============Datafiles===============\n")
 
             print "Control Status: " + readData('datafiles/controlStatus.txt')
-            f.write ("Control Status: " + readData('datafiles/controlStatus.txt'))
+            f.write ("Control Status: " + readData('datafiles/controlStatus.txt') + "\n")
 
             print "Desired temperature: " + readData('datafiles/desiredTemperature.txt')
-            f.write ("Desired temperature: " + readData('datafiles/desiredTemperature.txt'))
+            f.write ("Desired temperature: " + readData('datafiles/desiredTemperature.txt') + "\n")
 
             print "Measured Temperature: " + readData('datafiles/measuredTemperature.txt')
-            f.write ("Measured Temperature: " + readData('datafiles/measuredTemperature.txt'))
+            f.write ("Measured Temperature: " + readData('datafiles/measuredTemperature.txt') + "\n")
 
             print "showStatus: " + readData('datafiles/showStatus.txt')
-            f.write ("showStatus: " + readData('datafiles/showStatus.txt'))
+            f.write ("showStatus: " + readData('datafiles/showStatus.txt') + "\n")
 
             print "systemStatus: " + readData('datafiles/systemStatus.txt')
-            f.write ("systemStatus: " + readData('datafiles/systemStatus.txt'))
+            f.write ("systemStatus: " + readData('datafiles/systemStatus.txt') + "\n")
 
             print "timeOverride: " + readData('datafiles/timeOverride.txt')
-            f.write ("timeOverride: " + readData('datafiles/timeOverride.txt'))
+            f.write ("timeOverride: " + readData('datafiles/timeOverride.txt') + "\n")
 
             print "LED Brightness: " + readData('datafiles/alphaNumBrightness.txt')
-            f.write ("LED Brightness: " + readData('datafiles/alphaNumBrightness.txt'))
+            f.write ("LED Brightness: " + readData('datafiles/alphaNumBrightness.txt') + "\n")
 
             print "Override count: " + readData('datafiles/overrideCount.txt.txt')
-            f.write ("Override count: " + readData('datafiles/overrideCount.txt.txt'))
+            f.write ("Override count: " + readData('datafiles/overrideCount.txt.txt') + "\n")
             f.close ()
-
-
-
-
+        except:
+            pass
 
     def runControlAlgorithm(self):
         if self.controlStatus == 'OFF':
