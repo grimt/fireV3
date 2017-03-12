@@ -76,7 +76,7 @@ class cFire:
             f.write( "Measured temperature: " + str(self.measuredTemperature))
 
             print "Control Status      : " + self.controlStatus
-            f.write "Control Status      : " + self.controlStatus
+            f.write ("Control Status      : " + self.controlStatus)
 
             print "Time Override       : " + self.timeOverride
             f.write("Time Override       : " + self.timeOverride)
@@ -85,28 +85,28 @@ class cFire:
             f.write("=============Datafiles===============")
 
             print "Control Status: " + readData('datafiles/controlStatus.txt')
-            f.write "Control Status: " + readData('datafiles/controlStatus.txt')
+            f.write ("Control Status: " + readData('datafiles/controlStatus.txt')
 
             print "Desired temperature: " + readData('datafiles/desiredTemperature.txt')
-            f.write "Desired temperature: " + readData('datafiles/desiredTemperature.txt')
+            f.write ("Desired temperature: " + readData('datafiles/desiredTemperature.txt')
 
             print "Measured Temperature: " + readData('datafiles/measuredTemperature.txt')
-            f.write "Measured Temperature: " + readData('datafiles/measuredTemperature.txt')
+            f.write ("Measured Temperature: " + readData('datafiles/measuredTemperature.txt')
 
             print "showStatus: " + readData('datafiles/showStatus.txt')
-            f.write "showStatus: " + readData('datafiles/showStatus.txt')
+            f.write ("showStatus: " + readData('datafiles/showStatus.txt')
 
             print "systemStatus: " + readData('datafiles/systemStatus.txt')
-            f.write "systemStatus: " + readData('datafiles/systemStatus.txt')
+            f.write ("systemStatus: " + readData('datafiles/systemStatus.txt')
 
             print "timeOverride: " + readData('datafiles/timeOverride.txt')
-            f.write "timeOverride: " + readData('datafiles/timeOverride.txt')
+            f.write ("timeOverride: " + readData('datafiles/timeOverride.txt')
 
             print "LED Brightness: " + readData('datafiles/alphaNumBrightness.txt')
-            f.write "LED Brightness: " + readData('datafiles/alphaNumBrightness.txt')
+            f.write ("LED Brightness: " + readData('datafiles/alphaNumBrightness.txt')
 
             print "Override count: " + readData('datafiles/overrideCount.txt.txt')
-            f.write "Override count: " + readData('datafiles/overrideCount.txt.txt')
+            f.write ("Override count: " + readData('datafiles/overrideCount.txt.txt')
             f.close ()
 
 
