@@ -67,7 +67,7 @@ def startTempSensor ():
                     objTemp = calcTemp (rObjTemp)
                     ambTemp = calcTemp (rAmbTemp)
 
-                    print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
+                    # print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
                     tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
                     writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
                     # Now read the battery life
@@ -75,7 +75,7 @@ def startTempSensor ():
                     k = tool.expect([pexpect.TIMEOUT, 'descriptor: .*'], timeout=5)
                     if k == 1:
                         rVal = tool.after.split()
-                        print "Battery: " + str(floatfromhex(rVal[1]))
+                        #print "Battery: " + str(floatfromhex(rVal[1]))
                         writeData ('datafiles/batteryLife.txt', "%.0f" % floatfromhex(rVal[1]))
                     else:
                         goodConnection = False
