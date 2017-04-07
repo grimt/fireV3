@@ -31,9 +31,13 @@ def startTemperatureOverride():
     writeData ('datafiles/overrideCount.txt', str(currentOverrideCount))
     while True:
         # read timeCount from file
-        currentOverrideCount =  int (readData ('datafiles/overrideCount.txt'))
-        currentOverrideCount -= 1
-        writeData ('datafiles/overrideCount.txt', str(currentOverrideCount))
+        try:
+            currentOverrideCount =  int (readData ('datafiles/overrideCount.txt'))
+            currentOverrideCount -= 1
+            writeData ('datafiles/overrideCount.txt', str(currentOverrideCount))
+        except:
+            pass
+
         if currentOverrideCount == 0:
             currentOverrideCount = 30
     	    localtime = datetime.datetime.time(datetime.datetime.now())
