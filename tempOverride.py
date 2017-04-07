@@ -27,8 +27,9 @@ def time_in_range(start, end, x):
         return start <= x or x <= end
 
 def startTemperatureOverride():
+    currentOverrideCount = 30
+    writeData ('datafiles/overrideCount.txt', str(currentOverrideCount))
     while True:
-
         # read timeCount from file
         currentOverrideCount =  int (readData ('datafiles/overrideCount.txt'))
         currentOverrideCount -= 1
