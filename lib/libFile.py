@@ -31,9 +31,11 @@ def readDataFromFile(filename):
 
 def writeData (path, data):
     #print "Write to file: " + path
+    path = '/home/pi/pycode/fireV3/' + path
     writeDataToFile (path, data)
 
 def readData (path):
+    path = '/home/pi/pycode/fireV3/' + path
     return readDataFromFile (path)
 
 
