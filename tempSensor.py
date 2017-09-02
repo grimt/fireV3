@@ -92,3 +92,4 @@ def startTempSensor ():
             print "Bad Connection"
             goodConnection = False
             writeData ('datafiles/systemStatus.txt', "BTEr")
+            time.sleep(1)
