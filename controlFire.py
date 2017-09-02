@@ -26,6 +26,7 @@ class cFire:
         self.controlStatus = "OFF" # Strings - OFF/ON/AUTO
         self.timeOverride = "OFF"  # Strings OFF/ON
         self.fireState = FIRE_OFF  # Integer FIRE_OFF/FIRE_ON
+        self.systemStatus = "GOOD" # Only covers bluetooth for now.
 
     def switchFireOff(self):
         if self.fireState == FIRE_ON:
@@ -45,15 +46,22 @@ class cFire:
         try:
             if self.fireState == FIRE_OFF:
                 if float(self.measuredTemperature) <= (float(self.desiredTemperature) - 0.5):
-                    self.switchFireOn ()
-                    controlFireLogger.debug ('Switch fire ON Desired: ' + str (self.desiredTemperature)\
-                     + ' Measured: ' + str (self.measuredTemperature))
+                    if (self.systemStatus == 'GOOD'):
+                        self.switchFireOn ()
+                        controlFireLogger.debug ('Switch fire ON Desired: ' + str (self.desiredTemperature)\
+                        + ' Measured: ' + str (self.measuredTemperature))
+                    else:
+                        controlFireLogger.debug ('Error: Bluetooth error in auto state')
             else:
                 try:
-                    if float (self.measuredTemperature) >= (float(self.desiredTemperature)  + 0.5):
+                    if (self.systemStatus != 'GOOD'):
                         self.switchFireOff ()
-                        controlFireLogger.debug ('Switch fire OFF Desired: ' + str (self.desiredTemperature)\
-                            + ' Measured: ' + str (self.measuredTemperature))
+                        controlFireLogger.debug ('Switch fire OFF due to bluetooth error in Auto state ')
+                    else:
+                        if float (self.measuredTemperature) >= (float(self.desiredTemperature)  + 0.5):
+                            self.switchFireOff ()
+                            controlFireLogger.debug ('Switch fire OFF Desired: ' + str (self.desiredTemperature)\
+                                + ' Measured: ' + str (self.measuredTemperature))
                 except:
                     controlFireLogger.exception ('ValueError exception' + str (self.measuredTemperature))
         except ValueError:
@@ -158,6 +166,7 @@ try:
         fire.measuredTemperature = readData('datafiles/measuredTemperature.txt')
         fire.controlStatus = readData('datafiles/controlStatus.txt')
         fire.timeOverride = readData('datafiles/timeOverride.txt')
+        fire.systemStatus = readData('datafiles/systemStatus.txt')
 
         fire.runControlAlgorithm()
 
