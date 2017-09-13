@@ -14,7 +14,7 @@ from lib.libFile import appendData
 
 #TODO - can we use int from hex
 
-def saveAmbTempToFile (temp)
+def saveAmbTempToFile (temp):
     # append the temperature to a file to allow analysis of tempereture changes.
     localDate = datetime.datetime.date(datetime.datetime.now()).strftime('%d/%m/%Y')
     localtime = datetime.datetime.time(datetime.datetime.now()).strftime('%H:%M:%S')
