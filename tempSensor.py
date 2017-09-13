@@ -5,11 +5,24 @@
 import pexpect
 import sys
 import time
+import datetime
 
 from lib.libLog import initLogging
 from lib.libFile import  writeData
+from lib.libFile import appendData
+
 
 #TODO - can we use int from hex
+
+def saveAmbTempToFile (temp)
+    # append the temperature to a file to allow analysis of tempereture changes.
+    localDate = datetime.datetime.date(datetime.datetime.now()).strftime('%d/%m/%Y')
+    localtime = datetime.datetime.time(datetime.datetime.now()).strftime('%H:%M:%S')
+    data = localDate  + ' ' + localtime + ',' + temp + "\n"
+    # print data
+    appendData('datafiles/archiveTemperature.txt', data)
+
+
 def floatfromhex(h):
     t = float.fromhex(h)
     if t > float.fromhex('7FFF'):
@@ -70,6 +83,7 @@ def startTempSensor ():
                     # print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
                     #tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
                     writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
+                    saveAmbTempToFile(str(ambTemp))
                     # Now read the battery life
                     tool.sendline('char-read-hnd 0x001e')
                     k = tool.expect([pexpect.TIMEOUT, 'descriptor: .*'], timeout=5)
