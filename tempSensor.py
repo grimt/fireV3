@@ -85,7 +85,7 @@ def startTempSensor ():
                     #tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
                     writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
                     #TODO, only save temperature to file every 5 minutes
-                    if count >= 100:
+                    if count >= 10:
                         saveAmbTempToFile(str(ambTemp))
                         count = 0
                     else:
