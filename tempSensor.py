@@ -11,7 +11,6 @@ from lib.libLog import initLogging
 from lib.libFile import  writeData
 from lib.libFile import appendData
 
-count = 0
 
 #TODO - can we use int from hex
 
@@ -52,6 +51,7 @@ def startTempSensor ():
     tool = pexpect.spawn('gatttool -b ' + bluetooth_adr + ' --interactive')
     tool.expect('\[LE\]>')
     j = 1
+    count = 0
     while True:
         #print "Preparing to connect. You might need to press the side button..."
         #tool.sendline('connect')
