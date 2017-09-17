@@ -11,6 +11,7 @@ from lib.libLog import initLogging
 from lib.libFile import  writeData
 from lib.libFile import appendData
 
+count = 0
 
 #TODO - can we use int from hex
 
@@ -83,7 +84,12 @@ def startTempSensor ():
                     # print "Obj: " + "%.2f C" % objTemp + " Amb:  " + "%.2f " % ambTemp + "%"
                     #tempSensorLogger.debug ( "Obj: " + "%.2fC" % objTemp + " Amb:  " + "%.2fC" % ambTemp)
                     writeData ('datafiles/measuredTemperature.txt', "%.1f" % ambTemp)
-                    saveAmbTempToFile(str(ambTemp))
+                    #TODO, only save temperature to file every 5 minutes
+                    if count >= 100:
+                        saveAmbTempToFile(str(ambTemp))
+                        count = 0
+                    else:
+                        count += 1
                     # Now read the battery life
                     tool.sendline('char-read-hnd 0x001e')
                     k = tool.expect([pexpect.TIMEOUT, 'descriptor: .*'], timeout=5)
